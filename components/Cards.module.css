@@ -1,14 +1,27 @@
 .grid {
   display: grid;
-  grid-template:
-    "... .......... ... ............ ... ........... ..." 
-    "... topLeft    ... topCenter    ... topRight    ..." 300px
-    "... .......... ... ............ ... ........... ..." 20px
-    "... centerLeft ... centerCenter ... centerRight ..." 300px
-    "... .......... ... ............ ... ........... ..." 20px
-    "... bottomLeft ... bottomCenter ... bottomRight ..." 300px
-    "... .......... ... ............ ... ........... ..."  
-    / 20px 300px 20px 300px 20px 300px 20px ;
+    grid-template: 
+    "... ............ ..." 15px
+    "... topLeft      ..." 300px
+    "... ............ ..." 15px
+    "... topCenter    ..." 300px
+    "... ............ ..." 15px
+    "... topRight     ..." 300px
+    "... ............ ..." 15px
+    "... centerLeft   ..." 300px
+    "... ............ ..." 15px
+    "... centerCenter ..." 300px
+    "... ............ ..." 15px
+    "... centerRight  ..." 300px
+    "... ............ ..." 15px
+    "... bottomLeft   ..." 300px
+    "... ............ ..." 15px
+    "... bottomCenter ..." 300px
+    "... ............ ..." 15px
+    "... bottomRight  ..." 300px
+    "... ............ ..." 15px
+    / 15px 300px 15px
+  ;
 }
 
 .topLeft {
@@ -54,29 +67,46 @@
   left: 0;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (min-width:480px) { 
   .grid {
-    grid-template: 
-      "... ............ ..." 15px
-      "... topLeft      ..." 300px
-      "... ............ ..." 15px
-      "... topCenter    ..." 300px
-      "... ............ ..." 15px
-      "... topRight     ..." 300px
-      "... ............ ..." 15px
-      "... centerLeft   ..." 300px
-      "... ............ ..." 15px
-      "... centerCenter ..." 300px
-      "... ............ ..." 15px
-      "... centerRight  ..." 300px
-      "... ............ ..." 15px
-      "... bottomLeft   ..." 300px
-      "... ............ ..." 15px
-      "... bottomCenter ..." 300px
-      "... ............ ..." 15px
-      "... bottomRight  ..." 300px
-      "... ............ ..." 15px
-      / 10px 300px 10px
-    ;
+    grid-template:
+    "... ..........   ... ............ ..." 
+    "... topLeft      ... topCenter    ..." 200px
+    "... ..........   ... ............ ..." 20px
+    "... topRight     ... centerLeft   ..." 200px
+    "... ..........   ... ............ ..." 20px
+    "... centerCenter ... centerRight  ..." 200px
+    "... ..........   ... ............ ..." 20px
+    "... bottomLeft   ... bottomCenter ..." 200px
+    "... ..........   ... ............ ..." 20px
+    "... bottomRight  ... ............ ..." 200px
+    "... ..........   ... ............ ..."  
+    / 20px 200px 20px 200px 20px ;
+  }
+}
+@media screen and (min-width:768) and ( max-width:1024px) {
+  .grid {
+    grid-template:
+    "... .......... ... ............ ... ........... ..." 
+    "... topLeft    ... topCenter    ... topRight    ..." 250px
+    "... .......... ... ............ ... ........... ..." 20px
+    "... centerLeft ... centerCenter ... centerRight ..." 250px
+    "... .......... ... ............ ... ........... ..." 20px
+    "... bottomLeft ... bottomCenter ... bottomRight ..." 250px
+    "... .......... ... ............ ... ........... ..."  
+    / 20px 250px 20px 250px 20px 250px 20px ;
+  }
+}
+@media screen and (min-width:1024px) {
+  .grid {
+    grid-template:
+    "... .......... ... ............ ... ........... ..." 
+    "... topLeft    ... topCenter    ... topRight    ..." 300px
+    "... .......... ... ............ ... ........... ..." 20px
+    "... centerLeft ... centerCenter ... centerRight ..." 300px
+    "... .......... ... ............ ... ........... ..." 20px
+    "... bottomLeft ... bottomCenter ... bottomRight ..." 300px
+    "... .......... ... ............ ... ........... ..."  
+    / 20px 300px 20px 300px 20px 300px 20px ;
   }
 }
