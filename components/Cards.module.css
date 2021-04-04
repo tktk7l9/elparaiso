@@ -1,18 +1,82 @@
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: 20px;
+  grid-template:
+    "... .......... ... ............ ... ........... ..." 
+    "... topLeft    ... topCenter    ... topRight    ..." 300px
+    "... .......... ... ............ ... ........... ..." 20px
+    "... centerLeft ... centerCenter ... centerRight ..." 300px
+    "... .......... ... ............ ... ........... ..." 20px
+    "... bottomLeft ... bottomCenter ... bottomRight ..." 300px
+    "... .......... ... ............ ... ........... ..."  
+    / 20px 300px 20px 300px 20px 300px 20px ;
 }
 
-.gridItemContainer {
-  position: relative;
-  padding-top: 100%;
+.topLeft {
+  grid-area: topLeft;
+}
+
+.topCenter {
+  grid-area: topCenter;
+}
+
+.topRight {
+  grid-area: topRight;
+}
+
+.centerLeft {
+  grid-area: centerLeft;
+}
+
+.centerCenter {
+  grid-area: centerCenter;
+}
+
+.centerRight {
+  grid-area: centerRight;
+}
+
+.bottomLeft {
+  grid-area: bottomLeft;
+}
+
+.bottomCenter {
+  grid-area: bottomCenter;
+}
+
+.bottomRight {
+  grid-area: bottomRight;
 }
 
 .grid img {
   width: 100%;
   height: 100%;
-  position: absolute;
   top: 0;
   left: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .grid {
+    grid-template: 
+      "... ............ ..." 15px
+      "... topLeft      ..." 300px
+      "... ............ ..." 15px
+      "... topCenter    ..." 300px
+      "... ............ ..." 15px
+      "... topRight     ..." 300px
+      "... ............ ..." 15px
+      "... centerLeft   ..." 300px
+      "... ............ ..." 15px
+      "... centerCenter ..." 300px
+      "... ............ ..." 15px
+      "... centerRight  ..." 300px
+      "... ............ ..." 15px
+      "... bottomLeft   ..." 300px
+      "... ............ ..." 15px
+      "... bottomCenter ..." 300px
+      "... ............ ..." 15px
+      "... bottomRight  ..." 300px
+      "... ............ ..." 15px
+      / 10px 300px 10px
+    ;
+  }
 }
