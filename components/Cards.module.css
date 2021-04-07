@@ -8,12 +8,6 @@
     "... ............ ..." 15px
     "... topRight     ..." 300px
     "... ............ ..." 15px
-    "... centerLeft   ..." 300px
-    "... ............ ..." 15px
-    "... centerCenter ..." 300px
-    "... ............ ..." 15px
-    "... centerRight  ..." 300px
-    "... ............ ..." 15px
     "... bottomLeft   ..." 300px
     "... ............ ..." 15px
     "... bottomCenter ..." 300px
@@ -34,18 +28,6 @@
 
 .topRight {
   grid-area: topRight;
-}
-
-.centerLeft {
-  grid-area: centerLeft;
-}
-
-.centerCenter {
-  grid-area: centerCenter;
-}
-
-.centerRight {
-  grid-area: centerRight;
 }
 
 .bottomLeft {
@@ -73,13 +55,9 @@
     "... ..........   ... ............ ..." 
     "... topLeft      ... topCenter    ..." 200px
     "... ..........   ... ............ ..." 20px
-    "... topRight     ... centerLeft   ..." 200px
+    "... topRight     ... bottomLeft   ..." 200px
     "... ..........   ... ............ ..." 20px
-    "... centerCenter ... centerRight  ..." 200px
-    "... ..........   ... ............ ..." 20px
-    "... bottomLeft   ... bottomCenter ..." 200px
-    "... ..........   ... ............ ..." 20px
-    "... bottomRight  ... ............ ..." 200px
+    "... bottomCenter ... bottomRight  ..." 200px
     "... ..........   ... ............ ..."  
     / 20px 200px 20px 200px 20px ;
   }
@@ -89,8 +67,6 @@
     grid-template:
     "... .......... ... ............ ... ........... ..." 
     "... topLeft    ... topCenter    ... topRight    ..." 250px
-    "... .......... ... ............ ... ........... ..." 20px
-    "... centerLeft ... centerCenter ... centerRight ..." 250px
     "... .......... ... ............ ... ........... ..." 20px
     "... bottomLeft ... bottomCenter ... bottomRight ..." 250px
     "... .......... ... ............ ... ........... ..."  
@@ -102,8 +78,6 @@
     grid-template:
     "... .......... ... ............ ... ........... ..." 
     "... topLeft    ... topCenter    ... topRight    ..." 300px
-    "... .......... ... ............ ... ........... ..." 20px
-    "... centerLeft ... centerCenter ... centerRight ..." 300px
     "... .......... ... ............ ... ........... ..." 20px
     "... bottomLeft ... bottomCenter ... bottomRight ..." 300px
     "... .......... ... ............ ... ........... ..."  
