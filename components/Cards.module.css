@@ -13,33 +13,39 @@
     "... bottomCenter ..." 300px
     "... ............ ..." 15px
     "... bottomRight  ..." 300px
-    "... ............ ..." 15px
+    "... ............ ..." 150px
     / 15px 300px 15px
   ;
 }
 
 .topLeft {
   grid-area: topLeft;
+  animation: fadeIn 3s ease 0s 1 normal;
 }
 
 .topCenter {
   grid-area: topCenter;
+  animation: fadeIn 4s ease 0s 1 normal;
 }
 
 .topRight {
   grid-area: topRight;
+  animation: fadeIn 5s ease 0s 1 normal;
 }
 
 .bottomLeft {
   grid-area: bottomLeft;
+  animation: fadeIn 5s ease 0s 1 normal;
 }
 
 .bottomCenter {
   grid-area: bottomCenter;
+  animation: fadeIn 4s ease 0s 1 normal;
 }
 
 .bottomRight {
   grid-area: bottomRight;
+  animation: fadeIn 3s ease 0s 1 normal;
 }
 
 .grid img {
@@ -49,38 +55,50 @@
   left: 0;
 }
 
+.grid img:hover {
+  opacity: 0.6;
+  transition-duration: 0.6s;
+}
+
+@keyframes fadeIn { 
+  0% {opacity: 0} 
+  100% {opacity: 1} 
+}
+
 @media screen and (min-width:480px) { 
   .grid {
     grid-template:
-    "... ..........   ... ............ ..." 
+    "... ..........   ... ............ ..." 10px
     "... topLeft      ... topCenter    ..." 200px
     "... ..........   ... ............ ..." 20px
     "... topRight     ... bottomLeft   ..." 200px
     "... ..........   ... ............ ..." 20px
     "... bottomCenter ... bottomRight  ..." 200px
-    "... ..........   ... ............ ..."  
+    "... ..........   ... ............ ..." 20px
     / 20px 200px 20px 200px 20px ;
   }
 }
+
 @media screen and (min-width:768) and ( max-width:1024px) {
   .grid {
     grid-template:
-    "... .......... ... ............ ... ........... ..." 
+    "... .......... ... ............ ... ........... ..." 20px
     "... topLeft    ... topCenter    ... topRight    ..." 250px
     "... .......... ... ............ ... ........... ..." 20px
     "... bottomLeft ... bottomCenter ... bottomRight ..." 250px
-    "... .......... ... ............ ... ........... ..."  
+    "... .......... ... ............ ... ........... ..." 25px
     / 20px 250px 20px 250px 20px 250px 20px ;
   }
 }
+
 @media screen and (min-width:1024px) {
   .grid {
     grid-template:
-    "... .......... ... ............ ... ........... ..." 
+    "... .......... ... ............ ... ........... ..." 20px
     "... topLeft    ... topCenter    ... topRight    ..." 300px
     "... .......... ... ............ ... ........... ..." 20px
     "... bottomLeft ... bottomCenter ... bottomRight ..." 300px
-    "... .......... ... ............ ... ........... ..."  
+    "... .......... ... ............ ... ........... ..." 30px
     / 20px 300px 20px 300px 20px 300px 20px ;
   }
 }

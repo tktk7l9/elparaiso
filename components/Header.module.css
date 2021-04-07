@@ -1,7 +1,6 @@
 .header {
   width: 100%;
-  height: 70px;
-  border-bottom: 1px solid #eaeaea;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,23 +8,42 @@
 
 .anchor {
   display: inline-block;
-  padding: 8px 24px;
-  font-size: 1.2rem;
+  padding: 8px 6px;
+  font-size: 0.75rem;
 }
 
 .anchor:hover,
 .anchor:focus,
 .anchor:active {
-  color: #0070f3;
+  color: #aaaaaa;
 }
 
-@media (max-width: 600px) {
+@media screen and (min-width:480px) { 
   .header {
-    height: 40px;
+    height: 50px;
   }
   .anchor {
-    display: inline-block;
-    padding: 8px 6px;
-    font-size: 0.75rem;
+    padding: 8px 10px;
+    font-size: 1rem;
+  }
+}
+
+@media screen and (min-width:768) and ( max-width:1024px) {
+  .header {
+    height: 60px;
+  }
+  .anchor {
+    padding: 8px 17px;
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (min-width:1024px) {
+  .header {
+    height: 70px;
+  }
+  .anchor {
+    padding: 8px 24px;
+    font-size: 1.2rem;
   }
 }

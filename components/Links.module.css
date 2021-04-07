@@ -3,8 +3,9 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 800px;
-  margin-top: 3rem;
+  margin-top: 2rem;
+  width: 100%;
+  flex-direction: column;
 }
 
 .card {
@@ -16,14 +17,15 @@
   text-decoration: none;
   border: 1px solid #eaeaea;
   border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: color 0.15s ease border-color 0.15s ease;
+  animation: fadeIn 2s ease 0s 1 normal;
 }
 
 .card:hover,
 .card:focus,
 .card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+  color: #aaaaaa;
+  border-color: #aaaaaa;
 }
 
 .title {
@@ -37,9 +39,28 @@
   line-height: 1.5;
 }
 
-@media (max-width: 600px) {
+@keyframes fadeIn { 
+  0% {opacity: 0} 
+  100% {opacity: 1} 
+}
+
+@media screen and (min-width:480px) { 
   .grid {
-    width: 100%;
+    max-width: 500px;
     flex-direction: column;
+  }
+}
+
+@media screen and (min-width:768) and ( max-width:1024px) {
+  .grid {
+    max-width: 700px;
+    flex-direction: row;
+  }
+}
+
+@media screen and (min-width:1024px) {
+  .grid {
+    max-width: 800px;
+    flex-direction: row;
   }
 }
