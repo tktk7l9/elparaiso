@@ -2,17 +2,17 @@
   display: grid;
     grid-template: 
     "... ............ ..." 15px
-    "... topLeft      ..." 300px
+    "... topLeft      ..." 400px
     "... ............ ..." 15px
-    "... topCenter    ..." 300px
+    "... topCenter    ..." 400px
     "... ............ ..." 15px
-    "... topRight     ..." 300px
+    "... topRight     ..." 400px
     "... ............ ..." 15px
-    "... bottomLeft   ..." 300px
+    "... bottomLeft   ..." 400px
     "... ............ ..." 15px
-    "... bottomCenter ..." 300px
+    "... bottomCenter ..." 400px
     "... ............ ..." 15px
-    "... bottomRight  ..." 300px
+    "... bottomRight  ..." 400px
     "... ............ ..." 150px
     / 15px 300px 15px
   ;
@@ -69,13 +69,13 @@
   .grid {
     grid-template:
     "... ..........   ... ............ ..." 10px
-    "... topLeft      ... topCenter    ..." 200px
+    "... topLeft      ... topCenter    ..." 380px
     "... ..........   ... ............ ..." 20px
-    "... topRight     ... bottomLeft   ..." 200px
+    "... topRight     ... bottomLeft   ..." 380px
     "... ..........   ... ............ ..." 20px
-    "... bottomCenter ... bottomRight  ..." 200px
+    "... bottomCenter ... bottomRight  ..." 380px
     "... ..........   ... ............ ..." 20px
-    / 20px 200px 20px 200px 20px ;
+    / 20px 300px 20px 300px 20px ;
   }
 }
 
@@ -83,11 +83,11 @@
   .grid {
     grid-template:
     "... .......... ... ............ ... ........... ..." 20px
-    "... topLeft    ... topCenter    ... topRight    ..." 250px
+    "... topLeft    ... topCenter    ... topRight    ..." 380px
     "... .......... ... ............ ... ........... ..." 20px
-    "... bottomLeft ... bottomCenter ... bottomRight ..." 250px
+    "... bottomLeft ... bottomCenter ... bottomRight ..." 380px
     "... .......... ... ............ ... ........... ..." 25px
-    / 20px 250px 20px 250px 20px 250px 20px ;
+    / 20px 300px 20px 300px 20px 300px 20px ;
   }
 }
 
@@ -95,9 +95,9 @@
   .grid {
     grid-template:
     "... .......... ... ............ ... ........... ..." 20px
-    "... topLeft    ... topCenter    ... topRight    ..." 300px
+    "... topLeft    ... topCenter    ... topRight    ..." 380px
     "... .......... ... ............ ... ........... ..." 20px
-    "... bottomLeft ... bottomCenter ... bottomRight ..." 300px
+    "... bottomLeft ... bottomCenter ... bottomRight ..." 380px
     "... .......... ... ............ ... ........... ..." 30px
     / 20px 300px 20px 300px 20px 300px 20px ;
   }

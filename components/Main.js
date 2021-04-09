@@ -21,7 +21,6 @@ export function Main(props) {
               {props.page}
             </code>
           </Headline>
-          <Links />
           <Spotify />
         </main>
       }
