@@ -1,5 +1,6 @@
 import classes from './Main.module.css'
 import { Cards } from '../components/Cards'
+import { Spotify } from '../components/Spotify'
 import { Links } from '../components/Links'
 import { Headline } from '../components/Headline'
 
@@ -21,6 +22,7 @@ export function Main(props) {
             </code>
           </Headline>
           <Links />
+          <Spotify />
         </main>
       }
     </div>
