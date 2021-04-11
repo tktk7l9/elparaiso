@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import classes from './Headline.module.css'
 
-export function Headline(props) {
+export function Headline() {
     return (
         <div>
             <h1 className={classes.title}>
@@ -11,9 +11,6 @@ export function Headline(props) {
             </h1>
             <p className={classes.description}>
                 find your paradise inside of you
-            </p>
-            <p className={classes.description}>
-                {props.children}
             </p>
         </div>
     )

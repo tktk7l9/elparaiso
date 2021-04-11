@@ -4,25 +4,21 @@ import { Spotify } from '../components/Spotify'
 import { Headline } from '../components/Headline'
 
 export function Main(props) {
+  const page = props.page
   return (
     <div className={classes.container}>
-      { props.page === "index"
-        ?
-        <main className={classes.main}>
-          <Headline page={props.page}>
-          </Headline>
-          <Cards />
-        </main>
-        :
-        <main className={classes.main}>
-          <Headline page={props.page}>
-            <code className={classes.code}>
-              {props.page}
-            </code>
-          </Headline>
-          <Spotify />
-        </main>
-      }
+      <main className={classes.main}>
+        <Headline page={props.page} />
+          { page === 'index'
+            ?
+              <Cards />
+            : page === 'melodies'
+            ?
+              <Spotify />
+            :
+            <div>{page} page is comming soon</div>
+          }
+      </main>
     </div>
   )
 }
