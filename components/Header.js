@@ -2,23 +2,23 @@ import Link from 'next/link'
 import classes from './Header.module.css'
 
 export function Header() {
+  const PAGES = [
+    "about",
+    "melodies",
+    "projects",
+    "store",
+    "library"
+  ]
   return (
     <header className={classes.header}>
-      <Link href="/about">
-        <a className={classes.anchor}>About</a>
-      </Link>
-      <Link href="/melodies">
-        <a className={classes.anchor}>Melodies</a>
-      </Link>
-      <Link href="/projects">
-        <a className={classes.anchor}>Projects</a>
-      </Link>
-      <Link href="/store">
-        <a className={classes.anchor}>Store</a>
-      </Link>
-      <Link href="/library">
-        <a className={classes.anchor}>Library</a>
-      </Link>
+      {PAGES.map((page) => {
+        let pageLink = "/" + page
+        return (
+          <Link key={page} href={pageLink}>
+            <a className={classes.anchor}>{page}</a>
+          </Link>
+        )
+      })}
     </header>
   )
 }
