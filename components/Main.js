@@ -2,6 +2,7 @@ import classes from './Main.module.css'
 import { Cards } from '../components/Cards'
 import { Spotify } from '../components/Spotify'
 import { Headline } from '../components/Headline'
+import { StoresItems } from './StoresItems'
 
 export function Main(props) {
   const page = props.page
@@ -15,6 +16,9 @@ export function Main(props) {
             : page === 'melodies'
             ?
               <Spotify />
+            : page === 'store'
+            ?
+              <StoresItems />
             :
             <div>{page} page is comming soon</div>
           }
