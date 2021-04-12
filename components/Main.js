@@ -3,6 +3,7 @@ import { Cards } from '../components/Cards'
 import { Spotify } from '../components/Spotify'
 import { Headline } from '../components/Headline'
 import { StoresItems } from './StoresItems'
+import { PlaylistDetail } from './PlaylistDetail'
 
 export function Main(props) {
   const page = props.page
@@ -19,6 +20,9 @@ export function Main(props) {
             : page === 'store'
             ?
               <StoresItems />
+            : page === 'playlist'
+            ?
+              <PlaylistDetail />
             :
             <div>{page} page is comming soon</div>
           }
