@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import classes from './Headline.module.css'
+import classes from 'src/components/Headline/Headline.module.css'
 
 export function Headline() {
     return (

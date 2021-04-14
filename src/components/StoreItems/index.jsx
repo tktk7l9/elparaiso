@@ -1,6 +1,6 @@
-import classes from './StoresItems.module.css'
+import classes from 'src/components/StoreItems/StoreItems.module.css'
 
-export function StoresItems() {
+export function StoreItems() {
   const ITEMS = [
     {
       src: "images/stores/item0011.webp",

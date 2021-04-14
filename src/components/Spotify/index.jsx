@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import classes from './Spotify.module.css'
+import classes from 'src/components/Spotify/Spotify.module.css'
 
 export function Spotify() {
   const ITEMS = [
@@ -37,7 +37,7 @@ export function Spotify() {
     <ul className={classes.list}>
       {ITEMS.map((item) => {
         return (
-          <li key={item.href}>
+          <li key={item.title}>
             <Link href="/playlist">
               <img
                 src="images/melodies/playlist0001.jpg"

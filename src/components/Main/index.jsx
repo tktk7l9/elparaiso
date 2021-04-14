@@ -1,9 +1,9 @@
-import classes from './Main.module.css'
-import { Cards } from '../components/Cards'
-import { Spotify } from '../components/Spotify'
-import { Headline } from '../components/Headline'
-import { StoresItems } from './StoresItems'
-import { PlaylistDetail } from './PlaylistDetail'
+import classes from 'src/components/Main/Main.module.css'
+import { Cards } from 'src/components/Cards'
+import { Spotify } from 'src/components/Spotify'
+import { Headline } from 'src/components/Headline'
+import { StoreItems } from 'src/components/StoreItems'
+import { PlaylistDetail } from 'src/components/PlaylistDetail'
 
 export function Main(props) {
   const page = props.page
@@ -19,7 +19,7 @@ export function Main(props) {
               <Spotify />
             : page === 'store'
             ?
-              <StoresItems />
+              <StoreItems />
             : page === 'playlist'
             ?
               <PlaylistDetail />

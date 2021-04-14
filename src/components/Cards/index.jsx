@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import classes from './Cards.module.css'
+import classes from 'src/components/Cards/Cards.module.css'
 
 export function Cards() {
   return (

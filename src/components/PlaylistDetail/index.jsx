@@ -1,4 +1,4 @@
-import classes from './PlaylistDetail.module.css'
+import classes from 'src/components/PlaylistDetail/PlaylistDetail.module.css'
 
 export function PlaylistDetail() {
   return (
