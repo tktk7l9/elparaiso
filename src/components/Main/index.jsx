@@ -4,6 +4,7 @@ import { Spotify } from 'src/components/Spotify'
 import { Headline } from 'src/components/Headline'
 import { StoreItems } from 'src/components/StoreItems'
 import { PlaylistDetail } from 'src/components/PlaylistDetail'
+import { Contact } from 'src/components/Contact'
 
 export function Main(props) {
   const page = props.page
@@ -23,6 +24,9 @@ export function Main(props) {
             : page === 'playlist'
             ?
               <PlaylistDetail />
+            : page === 'contact'
+            ?
+              <Contact />
             :
             <div>{page} page is comming soon</div>
           }
