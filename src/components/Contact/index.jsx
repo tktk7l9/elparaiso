@@ -2,7 +2,7 @@ import classes from 'src/components/Contact/Contact.module.css'
 
 export function Contact() {
   return (
-    <>
+    <div className={classes.container}>
       <div className={classes.description}>
         <p>CONTACT</p>
         <p>
@@ -28,7 +28,7 @@ export function Contact() {
       >
         <div>
         <p className={classes.name}>Name</p>
-          <p className={classes.input}>
+          <p className={classes.ninput}>
             <label 
               className={classes.label}
               htmlFor="firstName"
@@ -37,10 +37,11 @@ export function Contact() {
               id="firstName"
               type="text"
               name="entry.1648867423"
+              className={classes.ntext}
               required
             />
           </p>
-          <p className={classes.input}>
+          <p className={classes.ninput}>
             <label
               className={classes.label}
               htmlFor="lastName">Last Name *</label>
@@ -48,6 +49,7 @@ export function Contact() {
               id="lastName"
               type="text"
               name="entry.2110706354"
+              className={classes.ntext}
               required
             />
           </p>
@@ -60,6 +62,7 @@ export function Contact() {
             id="email"
             type="email"
             name="entry.854962110"
+            className={classes.text}
             required
           />
         </p>
@@ -71,6 +74,7 @@ export function Contact() {
             id="subject"
             type="text"
             name="entry.1485299470"
+            className={classes.text}
             required
           />
         </p>
@@ -92,6 +96,6 @@ export function Contact() {
           Submit
         </button>
       </form>
-    </>
+    </div>
   )
 }
