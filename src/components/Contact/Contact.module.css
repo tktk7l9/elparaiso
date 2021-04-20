@@ -24,11 +24,14 @@
 
 .ninput {
   display: inline-block;
-  padding-inline-end: 10px;
+}
+
+#pLastName {
+  padding-left: 15px;
 }
 
 .ntext {
-  width: 150px;
+  width: 160px;
   height: 40px;
   padding: 12px;
 }
@@ -72,4 +75,46 @@
 @keyframes fadeIn { 
   0% {opacity: 0} 
   100% {opacity: 1} 
+}
+
+@media screen and (min-width:480px) { 
+  .ntext {
+    width: 216px;
+  }
+  
+  .text {
+    width: 450px;
+  }
+  
+  .textarea {
+    width: 450px;
+  }
+}
+
+@media screen and (min-width:768) and ( max-width:1024px) {
+  .ntext {
+    width: 398px;
+  }
+  
+  .text {
+    width: 813px;
+  }
+  
+  .textarea {
+    width: 813px;
+  }
+}
+
+@media screen and (min-width:1024px) {
+  .ntext {
+    width: 580px;
+  }
+  
+  .text {
+    width: 1176px;
+  }
+
+  .textarea {
+    width: 1176px;
+  }
 }

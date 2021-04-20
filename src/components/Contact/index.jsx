@@ -8,10 +8,10 @@ export function Contact() {
         <p>
           For all order inquires which include but not limited to:
         </p>
-        <p>Seeding Program</p>
-        <p>International</p>
-        <p>Wholesale</p>
-        <p>Press</p>
+        <p>・Seeding Program</p>
+        <p>・International</p>
+        <p>・Wholesale</p>
+        <p>・Press</p>
         <p>Complete form below:</p>
       </div>
       <form
@@ -27,12 +27,8 @@ export function Contact() {
         className={classes.form}
       >
         <div>
-        <p className={classes.name}>Name</p>
+        <p className={classes.name}>Name *</p>
           <p className={classes.ninput}>
-            <label 
-              className={classes.label}
-              htmlFor="firstName"
-            >First Name *</label>
             <input
               id="firstName"
               type="text"
@@ -40,11 +36,12 @@ export function Contact() {
               className={classes.ntext}
               required
             />
-          </p>
-          <p className={classes.ninput}>
-            <label
+            <label 
               className={classes.label}
-              htmlFor="lastName">Last Name *</label>
+              htmlFor="firstName"
+            >First Name</label>
+          </p>
+          <p id={classes.pLastName} className={classes.ninput}>
             <input
               id="lastName"
               type="text"
@@ -52,6 +49,9 @@ export function Contact() {
               className={classes.ntext}
               required
             />
+            <label
+              className={classes.label}
+              htmlFor="lastName">Last Name</label>
           </p>
         </div>
         <p className={classes.input}>
