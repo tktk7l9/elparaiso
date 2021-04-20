@@ -13,8 +13,6 @@
 }
 
 .list li img {
-	max-width: 100%;
-	height: auto;
   transition: color 0.15s ease border-color 0.15s ease;
   animation: fadeIn 2s ease 0s 1 normal;
 }
