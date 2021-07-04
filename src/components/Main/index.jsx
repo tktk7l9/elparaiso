@@ -25,7 +25,7 @@ export function Main(props) {
             ? <StoreItems />
             : page === 'contact'
             ? <Contact />
-            : <div>{page} page is comming soon</div>
+            : <div>{page} page is coming soon</div>
           }
       </main>
     </div>
