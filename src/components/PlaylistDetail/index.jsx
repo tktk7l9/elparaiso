@@ -1,5 +1,6 @@
 import classes from "src/components/PlaylistDetail/PlaylistDetail.module.css";
 import Image from "next/image";
+import Iframe from "react-iframe";
 
 export function PlaylistDetail() {
   return (
@@ -12,7 +13,7 @@ export function PlaylistDetail() {
         height={300}
       />
       <p className={classes.p}>CURATED MELODIES #1</p>
-      <iframe
+      <Iframe
         src="https://open.spotify.com/embed/playlist/1jnkrS9FUGTzZ6nIOuZ0xE"
         width="300"
         height="380"
@@ -20,7 +21,7 @@ export function PlaylistDetail() {
         allowtransparency="true"
         allow="encrypted-media"
         className={classes.iframe}
-      ></iframe>
+      ></Iframe>
     </>
   );
 }
