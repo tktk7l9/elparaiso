@@ -15,7 +15,7 @@ export function Contact() {
         <p>Complete form below:</p>
       </div>
       <form
-        action="https://docs.google.com/forms/u/1/d/e/1FAIpQLScuMQAE-Bq0Jti9z5BkPluzLEBADBJmwXi_d2ksRN0-DsSroQ/formResponse"
+        action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSeoZzufLi3L4TEpdHXb-lbfX0dZU7TrxPNibj4dtg2C7ih11A/formResponse"
         target="_self"
         method="POST"
         id="mG61Hd"
