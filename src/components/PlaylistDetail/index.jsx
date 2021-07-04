@@ -1,10 +1,15 @@
-import classes from 'src/components/PlaylistDetail/PlaylistDetail.module.css'
+import classes from "src/components/PlaylistDetail/PlaylistDetail.module.css";
+import Image from "next/image";
 
 export function PlaylistDetail() {
   return (
     <>
-      <img className={classes.img}
-        src="images/melodies/playlist0001.webp"
+      <Image
+        className={classes.img}
+        src="/images/melodies/playlist0001.webp"
+        alt="CURATED MELODIES #1"
+        width={300}
+        height={300}
       />
       <p className={classes.p}>CURATED MELODIES #1</p>
       <iframe
@@ -15,8 +20,7 @@ export function PlaylistDetail() {
         allowtransparency="true"
         allow="encrypted-media"
         className={classes.iframe}
-      >
-      </iframe>
+      ></iframe>
     </>
-  )
+  );
 }

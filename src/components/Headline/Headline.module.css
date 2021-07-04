@@ -1,62 +1,8 @@
-.title {
-  margin: 0;
-  line-height: 1;
-  font-size: 3rem;
-  text-transform: capitalize;
-}
-
-.title,
-.description {
-  text-align: center;
-}
-
-.description {
-  line-height: 1;
-  font-size: 1rem;
-}
-
-.logo {
-  width: 300px;
-}
-
 @media screen and (min-width:480px) { 
-  .title {
-    line-height: 1.1;
-    font-size: 3.2rem;
-  }
-  .description {
-    line-height: 1.1;
-    font-size: 1.1rem;
-  }
-  .logo {
-    width: 300px;
-  }
 }
 
 @media screen and (min-width:768) and ( max-width:1024px) {
-  .title {
-    line-height: 1.25;
-    font-size: 3.5rem;
-  }
-  .description {
-    line-height: 1.2;
-    font-size: 1.2rem;
-  }
-  .logo {
-    width: 400px;
-  }
 }
 
 @media screen and (min-width:1024px) {
-  .title {
-    line-height: 1.25;
-    font-size: 3.5rem;
-  }
-  .description {
-    line-height: 1.25;
-    font-size: 1.2rem;
-  }
-  .logo {
-    width: 500px;
-  }
 }

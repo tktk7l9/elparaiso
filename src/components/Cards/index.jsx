@@ -1,22 +1,41 @@
-import Link from 'next/link'
-import classes from 'src/components/Cards/Cards.module.css'
+import Link from "next/link";
+import Image from "next/image";
+import classes from "src/components/Cards/Cards.module.css";
 
 export function Cards() {
   return (
     <div className={classes.grid}>
       <div className={classes.topLeft}>
         <Link href="/about">
-          <img src="images/top/about.webp"/>
+          <Image
+            className={classes.img}
+            src="/images/top/about.webp"
+            alt="about"
+            width={500}
+            height={500}
+          />
         </Link>
       </div>
       <div className={classes.topCenter}>
         <Link href="/melodies">
-          <img src="images/top/melodies.webp" />
+          <Image
+            className={classes.img}
+            src="/images/top/melodies.webp"
+            alt="melodies"
+            width={500}
+            height={500}
+          />
         </Link>
       </div>
       <div className={classes.topRight}>
         <Link href="/projects">
-          <img src="images/top/projects.webp" />
+          <Image
+            className={classes.img}
+            src="/images/top/projects.webp"
+            alt="projects"
+            width={500}
+            height={500}
+          />
         </Link>
       </div>
       <div className={classes.bottomLeft}>
@@ -25,17 +44,35 @@ export function Cards() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img src="images/top/store.webp" />
+          <Image
+            className={classes.img}
+            src="/images/top/store.webp"
+            alt="store"
+            width={500}
+            height={500}
+          />
         </a>
         {/* <Link href="/store">
-          <img src="images/top/store.webp" />
+          <Image 
+            className={classes.img}
+            src="/images/top/store.webp"
+            alt="store"
+            width={500}
+            height={500}
+          />
         </Link> */}
       </div>
       <div className={classes.bottomCenter}>
         <Link href="/library">
-          <img src="images/top/library.webp" />
+          <Image
+            className={classes.img}
+            src="/images/top/library.webp"
+            alt="library"
+            width={500}
+            height={500}
+          />
         </Link>
       </div>
     </div>
-  )
+  );
 }

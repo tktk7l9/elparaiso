@@ -7,20 +7,16 @@
 }
 
 .ul li {
-  width: 100%;
 	box-sizing: border-box;
   text-align: center;
-  padding: 10px 5px;
 }
 
-.ul li img {
-	max-width: 80%;
-	height: auto;
+.img {
   transition: color 0.15s ease border-color 0.15s ease;
   animation: fadeIn 2s ease 0s 1 normal;
 }
 
-.ul li img:hover {
+.img:hover {
   opacity: 0.6;
   transition-duration: 0.6s;
   transform:scale(1.01,1.01);
@@ -41,13 +37,6 @@
     display: flex;
     justify-content: center;
   }
-  .ul li{
-    width: 100%;
-    padding: 10px 10px;
-  }
-  .ul li img {
-    max-width: 80%;
-  }
   .p {
     font-size: 16px;
   }
@@ -58,13 +47,6 @@
     display: flex;
     justify-content: center;
   }
-  .ul li{
-    width: calc(100%/3);
-    padding: 15px 15px;
-  }
-  .ul li img {
-    max-width: 80%;
-  }
   .p {
     font-size: 20px;
   }
@@ -74,13 +56,6 @@
   .ul {
     display: flex;
     justify-content: center;
-  }
-  .ul li{
-    width: calc(100%/3);
-    padding: 20px 20px;
-  }
-  .ul li img {
-    max-width: 80%;
   }
   .p {
     font-size: 20px;
