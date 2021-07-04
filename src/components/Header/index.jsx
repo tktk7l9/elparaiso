@@ -14,9 +14,18 @@ export function Header() {
       {PAGES.map((page) => {
         let pageLink = "/" + page
         return (
-          <Link key={page} href={pageLink}>
-            <a className={classes.anchor}>{page}</a>
-          </Link>
+          page === "store"
+            ?
+              <a
+                href="https://elparaiso.stores.jp/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={classes.anchor}
+              >{page}</a>
+            :
+              <Link key={page} href={pageLink}>
+                <a className={classes.anchor}>{page}</a>
+              </Link>
         )
       })}
     </header>

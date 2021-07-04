@@ -1,5 +1,6 @@
 import classes from 'src/components/Main/Main.module.css'
 import { Cards } from 'src/components/Cards'
+import { About } from 'src/components/About'
 import { Spotify } from 'src/components/Spotify'
 import { Headline } from 'src/components/Headline'
 import { StoreItems } from 'src/components/StoreItems'
@@ -13,22 +14,18 @@ export function Main(props) {
       <main className={classes.main}>
         <Headline page={props.page} />
           { page === 'index'
-            ?
-              <Cards />
+            ? <Cards />
+            : page === 'about'
+            ? <About />
             : page === 'melodies'
-            ?
-              <Spotify />
-            : page === 'store'
-            ?
-              <StoreItems />
+            ? <Spotify />
             : page === 'playlist'
-            ?
-              <PlaylistDetail />
+            ? <PlaylistDetail />
+            : page === 'store'
+            ? <StoreItems />
             : page === 'contact'
-            ?
-              <Contact />
-            :
-            <div>{page} page is comming soon</div>
+            ? <Contact />
+            : <div>{page} page is comming soon</div>
           }
       </main>
     </div>

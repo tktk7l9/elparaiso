@@ -2,16 +2,14 @@ import Link from 'next/link'
 import classes from 'src/components/Headline/Headline.module.css'
 
 export function Headline() {
-    return (
-        <div>
-            <h1 className={classes.title}>
-                <Link href="/">
-                    EL PARAISO
-                </Link>
-            </h1>
-            <p className={classes.description}>
-                find your paradise inside of you
-            </p>
-        </div>
-    )
+  return (
+    <div>
+      <Link href="/">
+        <img
+          src="images/logo.svg"
+          className={classes.logo}
+        />
+      </Link>
+    </div>
+  )
 }

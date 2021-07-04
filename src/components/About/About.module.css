@@ -1,14 +1,7 @@
 .p {
   font-size: 16px;
-}
-
-.img {
-  width: 80%;
-  padding: 31px 8px;
-}
-
-.iframe {
-  padding: 10px;
+  padding: 16px;
+  margin: 4px 8px;
 }
 
 @keyframes fadeIn { 
@@ -19,29 +12,23 @@
 @media screen and (min-width:480px) { 
   .p {
     font-size: 16px;
-  }
-  .img {
-    width: 76%;
-    padding: 10px 40px;
+    padding: 16px;
+    margin: 4px 20px;
   }
 }
 
 @media screen and (min-width:768) and ( max-width:1024px) {
   .p {
     font-size: 20px;
-  }
-  .img {
-    width: 20%;
-    padding: 10px 40px;
+    padding: 36px;
+    margin: 36px 400px;
   }
 }
 
 @media screen and (min-width:1024px) {
   .p {
     font-size: 20px;
-  }
-  .img {
-    width: 20%;
-    padding: 10px 40px;
+    padding: 36px;
+    margin: 36px 400px;
   }
 }

@@ -58,6 +58,8 @@
 .grid img:hover {
   opacity: 0.6;
   transition-duration: 0.6s;
+  transform:scale(1.01,1.01);
+  transition:1s all;
 }
 
 @keyframes fadeIn { 
