@@ -4,6 +4,7 @@ import { About } from "src/components/About";
 import { Spotify } from "src/components/Spotify";
 import { Headline } from "src/components/Headline";
 import { StoreItems } from "src/components/StoreItems";
+import { LibraryItems } from "src/components/LibraryItems";
 import { PlaylistDetail } from "src/components/PlaylistDetail";
 import { Contact } from "src/components/Contact";
 
@@ -23,6 +24,8 @@ export function Main(props) {
           <PlaylistDetail />
         ) : page === "store" ? (
           <StoreItems />
+        ) : page === "library" ? (
+          <LibraryItems />
         ) : page === "contact" ? (
           <Contact />
         ) : (
