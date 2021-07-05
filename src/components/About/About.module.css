@@ -2,6 +2,7 @@
   font-size: 16px;
   padding: 16px;
   margin: 4px 8px;
+  animation: fadeIn 3s ease 0s 1 normal;
 }
 
 @keyframes fadeIn { 

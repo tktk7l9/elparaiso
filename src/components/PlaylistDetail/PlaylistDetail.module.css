@@ -1,5 +1,14 @@
+.img {
+  animation: fadeIn 3s ease 0s 1 normal;
+}
+
 .p {
   font-size: 16px;
+  animation: fadeIn 3s ease 0s 1 normal;
+}
+
+.iframe {
+  animation: fadeIn 3s ease 0s 1 normal;
 }
 
 @keyframes fadeIn { 
