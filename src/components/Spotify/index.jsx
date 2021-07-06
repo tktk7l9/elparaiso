@@ -1,13 +1,12 @@
-import Link from "next/link";
-import Image from "next/image";
 import classes from "src/components/Spotify/Spotify.module.css";
+import { Playlist } from "src/components/Playlist";
 
 export function Spotify() {
-  const ITEMS = [
+  const PLAYLISTS = [
     {
       src: "/images/melodies/playlist0001.webp",
-      href: "/playlist",
       title: "CURATED MELODIES #1",
+      href: "/playlist",
       iframe:
         '<iframe src="https://open.spotify.com/embed/track/564oa00vY05d1uYnTEAAmE" width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>',
     },
@@ -16,19 +15,11 @@ export function Spotify() {
   return (
     <>
       <ul className={classes.ul}>
-        {ITEMS.map((item) => {
+        {PLAYLISTS.map((playlist) => {
+          const { title, href, src } = playlist;
           return (
-            <li key={item.title}>
-              <Link href={item.href} src={item.src}>
-                <Image
-                  className={classes.img}
-                  src={item.src}
-                  alt={item.title}
-                  width={300}
-                  height={300}
-                />
-              </Link>
-              <p className={classes.p}>{item.title}</p>
+            <li key={title}>
+              <Playlist href={href} src={src} title={title} />
             </li>
           );
         })}

@@ -7,58 +7,36 @@
 }
 
 .ul li {
-	box-sizing: border-box;
+  box-sizing: border-box;
   text-align: center;
 }
 
-.img {
-  transition: color 0.15s ease border-color 0.15s ease;
-  animation: fadeIn 2s ease 0s 1 normal;
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-.img:hover {
-  opacity: 0.6;
-  transition-duration: 0.6s;
-  transform:scale(1.01,1.01);
-  transition:1s all;
-}
-
-.p {
-  font-size: 16px;
-  animation: fadeIn 3s ease 0s 1 normal;
-}
-
-@keyframes fadeIn { 
-  0% {opacity: 0} 
-  100% {opacity: 1} 
-}
-
-@media screen and (min-width:480px) { 
+@media screen and (min-width: 480px) {
   .ul {
     display: flex;
     justify-content: center;
   }
-  .p {
-    font-size: 16px;
-  }
 }
 
-@media screen and (min-width:768) and ( max-width:1024px) {
+@media screen and (min-width: 768) and (max-width: 1024px) {
   .ul {
     display: flex;
     justify-content: center;
   }
-  .p {
-    font-size: 20px;
-  }
 }
 
-@media screen and (min-width:1024px) {
+@media screen and (min-width: 1024px) {
   .ul {
     display: flex;
     justify-content: center;
-  }
-  .p {
-    font-size: 20px;
   }
 }
