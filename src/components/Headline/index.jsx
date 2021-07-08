@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import classes from "src/components/Headline/Headline.module.css";
 
-export function Headline() {
+export const Headline = () => {
   return (
     <div>
       <Link href="/">
@@ -16,4 +16,4 @@ export function Headline() {
       </Link>
     </div>
   );
-}
+};

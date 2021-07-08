@@ -1,7 +1,7 @@
 import classes from "src/components/Spotify/Spotify.module.css";
 import { Playlist } from "src/components/Playlist";
 
-export function Spotify() {
+export const Spotify = () => {
   const PLAYLISTS = [
     {
       src: "/images/melodies/playlist0001.webp",
@@ -26,4 +26,4 @@ export function Spotify() {
       </ul>
     </>
   );
-}
+};

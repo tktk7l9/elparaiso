@@ -1,13 +1,11 @@
-import classes from 'src/components/Contact/Contact.module.css'
+import classes from "src/components/Contact/Contact.module.css";
 
-export function Contact() {
+export const Contact = () => {
   return (
     <div className={classes.container}>
       <div className={classes.description}>
         <p>CONTACT</p>
-        <p>
-          For all order inquires which include but not limited to:
-        </p>
+        <p>For all order inquires which include but not limited to:</p>
         <p>・Seeding Program</p>
         <p>・International</p>
         <p>・Wholesale</p>
@@ -27,7 +25,7 @@ export function Contact() {
         className={classes.form}
       >
         <div>
-        <p className={classes.name}>Name *</p>
+          <p className={classes.name}>Name *</p>
           <p className={classes.ninput}>
             <input
               id="firstName"
@@ -36,10 +34,9 @@ export function Contact() {
               className={classes.ntext}
               required
             />
-            <label 
-              className={classes.label}
-              htmlFor="firstName"
-            >First Name</label>
+            <label className={classes.label} htmlFor="firstName">
+              First Name
+            </label>
           </p>
           <p id={classes.pLastName} className={classes.ninput}>
             <input
@@ -49,15 +46,15 @@ export function Contact() {
               className={classes.ntext}
               required
             />
-            <label
-              className={classes.label}
-              htmlFor="lastName">Last Name</label>
+            <label className={classes.label} htmlFor="lastName">
+              Last Name
+            </label>
           </p>
         </div>
         <p className={classes.input}>
-          <label
-            className={classes.label}
-            htmlFor="email">Mail Address *</label>
+          <label className={classes.label} htmlFor="email">
+            Mail Address *
+          </label>
           <input
             id="email"
             type="email"
@@ -67,9 +64,9 @@ export function Contact() {
           />
         </p>
         <p className={classes.input}>
-          <label
-            className={classes.label}
-            htmlFor="subject">Subject *</label>
+          <label className={classes.label} htmlFor="subject">
+            Subject *
+          </label>
           <input
             id="subject"
             type="text"
@@ -79,23 +76,19 @@ export function Contact() {
           />
         </p>
         <p className={classes.input}>
-          <label
-            className={classes.label}
-            htmlFor="message">Message *</label>
+          <label className={classes.label} htmlFor="message">
+            Message *
+          </label>
           <textarea
             id="message"
             className={classes.textarea}
             name="entry.421893950"
-          >
-          </textarea>
+          ></textarea>
         </p>
-        <button
-          type="submit"
-          className={classes.btn}
-        >
+        <button type="submit" className={classes.btn}>
           Submit
         </button>
       </form>
     </div>
-  )
-}
+  );
+};

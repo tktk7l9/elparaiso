@@ -1,7 +1,7 @@
 import Link from "next/link";
 import classes from "src/components/Header/Header.module.css";
 
-export function Header() {
+export const Header = () => {
   const PAGES = ["about", "melodies", "projects", "store", "library"];
   return (
     <header className={classes.header}>
@@ -25,4 +25,4 @@ export function Header() {
       })}
     </header>
   );
-}
+};

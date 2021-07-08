@@ -2,7 +2,7 @@ import classes from "src/components/PlaylistDetail/PlaylistDetail.module.css";
 import Iframe from "react-iframe";
 import { Playlist } from "src/components/Playlist";
 
-export function PlaylistDetail() {
+export const PlaylistDetail = () => {
   const PLAYLISTS = [
     {
       src: "/images/melodies/playlist0001.webp",
@@ -31,4 +31,4 @@ export function PlaylistDetail() {
       ></Iframe>
     </>
   );
-}
+};

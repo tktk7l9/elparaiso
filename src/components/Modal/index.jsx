@@ -1,7 +1,7 @@
 import Image from "next/image";
 import classes from "src/components/Modal/Modal.module.css";
 
-export function Modal(props) {
+export const Modal = (props) => {
   const closeModal = () => props.setIsShow(false);
 
   if (props.isShow) {
@@ -21,4 +21,4 @@ export function Modal(props) {
   } else {
     return null;
   }
-}
+};

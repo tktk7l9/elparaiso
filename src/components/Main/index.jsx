@@ -8,30 +8,31 @@ import { LibraryItems } from "src/components/LibraryItems";
 import { PlaylistDetail } from "src/components/PlaylistDetail";
 import { Contact } from "src/components/Contact";
 
-export function Main(props) {
-  const page = props.page;
+export const Main = (props) => {
   return (
     <div className={classes.container}>
       <main className={classes.main}>
         <Headline page={props.page} />
-        {page === "index" ? (
+        {props.page === "index" ? (
           <Cards />
-        ) : page === "about" ? (
+        ) : props.page === "about" ? (
           <About />
-        ) : page === "melodies" ? (
+        ) : props.page === "melodies" ? (
           <Spotify />
-        ) : page === "playlist" ? (
+        ) : props.page === "playlist" ? (
           <PlaylistDetail />
-        ) : page === "store" ? (
+        ) : props.page === "store" ? (
           <StoreItems />
-        ) : page === "library" ? (
+        ) : props.page === "library" ? (
           <LibraryItems />
-        ) : page === "contact" ? (
+        ) : props.page === "contact" ? (
           <Contact />
         ) : (
-          <div className={classes.comingsoon}>{page} page is coming soon</div>
+          <div className={classes.comingsoon}>
+            {props.page} page is coming soon
+          </div>
         )}
       </main>
     </div>
   );
-}
+};

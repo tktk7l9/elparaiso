@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import classes from "src/components/Cards/Cards.module.css";
 
-export function Cards() {
+export const Cards = () => {
   return (
     <div className={classes.grid}>
       <div className={classes.topLeft}>
@@ -75,4 +75,4 @@ export function Cards() {
       </div>
     </div>
   );
-}
+};

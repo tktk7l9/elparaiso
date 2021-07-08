@@ -3,7 +3,7 @@ import { useState } from "react";
 import classes from "src/components/LibraryItems/LibraryItems.module.css";
 import { Modal } from "src/components/Modal";
 
-export function LibraryItems() {
+export const LibraryItems = () => {
   const ITEMS = [];
   for (let i = 1; i < 14; i++) {
     if (i < 10) {
@@ -51,4 +51,4 @@ export function LibraryItems() {
       </article>
     </>
   );
-}
+};

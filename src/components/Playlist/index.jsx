@@ -2,7 +2,7 @@ import classes from "src/components/Playlist/Playlist.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
-export function Playlist(props) {
+export const Playlist = (props) => {
   const { href, src, title } = props;
   return (
     <>
@@ -18,4 +18,4 @@ export function Playlist(props) {
       <p className={classes.p}>{title}</p>
     </>
   );
-}
+};

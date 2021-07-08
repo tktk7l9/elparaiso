@@ -1,15 +1,18 @@
 // pages/_document.tsx
-import { GA_TRACKING_ID } from '../lib/gtag';
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import { GA_TRACKING_ID } from "../lib/gtag";
+import Document, { Html, Head, Main, NextScript } from "next/document";
 
 export default class MyDocument extends Document {
-  render() {
+  render = () => {
     return (
       <Html lang="ja">
         <Head>
           {GA_TRACKING_ID && (
             <>
-              <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
+              <script
+                async
+                src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+              />
               <script
                 dangerouslySetInnerHTML={{
                   __html: `
@@ -31,5 +34,5 @@ export default class MyDocument extends Document {
         </body>
       </Html>
     );
-  }
+  };
 }
