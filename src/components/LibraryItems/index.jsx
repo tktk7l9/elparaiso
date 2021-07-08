@@ -1,5 +1,7 @@
 import Image from "next/image";
+import { useState } from "react";
 import classes from "src/components/LibraryItems/LibraryItems.module.css";
+import { Modal } from "src/components/Modal";
 
 export function LibraryItems() {
   const ITEMS = [];
@@ -17,6 +19,9 @@ export function LibraryItems() {
     }
   }
 
+  const [isShow, setIsShow] = useState(false);
+  const openModal = () => setIsShow(true);
+
   return (
     <>
       <article className={classes.article}>
@@ -24,7 +29,7 @@ export function LibraryItems() {
           return (
             <section className={classes.section} key={item.title}>
               <figure className={classes.figure}>
-                <a className={classes.a} href="#">
+                <button className={classes.button} onClick={openModal}>
                   <Image
                     className={classes.img}
                     src={item.src}
@@ -32,7 +37,13 @@ export function LibraryItems() {
                     width={1200}
                     height={800}
                   />
-                </a>
+                  {/* <Modal
+                    isShow={isShow}
+                    setIsShow={setIsShow}
+                    src={item.src}
+                    title={item.title}
+                  /> */}
+                </button>
               </figure>
             </section>
           );
