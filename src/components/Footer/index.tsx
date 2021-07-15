@@ -1,5 +1,6 @@
 import Link from "next/link";
 import classes from "src/components/Footer/Footer.module.css";
+import React from "react";
 
 export const Footer = () => {
   const LINKS = [

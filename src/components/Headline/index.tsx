@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import classes from "src/components/Headline/Headline.module.css";
+import React from "react";
 
 export const Headline = () => {
   return (

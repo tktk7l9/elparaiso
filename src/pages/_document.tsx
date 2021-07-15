@@ -1,6 +1,7 @@
 // pages/_document.tsx
-import { GA_TRACKING_ID } from "../lib/gtag";
+import { GA_TRACKING_ID } from "../libs/gtag";
 import Document, { Html, Head, Main, NextScript } from "next/document";
+import React from "react";
 
 export default class MyDocument extends Document {
   render = () => {

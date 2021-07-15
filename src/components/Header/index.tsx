@@ -1,5 +1,6 @@
 import Link from "next/link";
 import classes from "src/components/Header/Header.module.css";
+import React from "react";
 
 export const Header = () => {
   const PAGES = ["about", "melodies", "projects", "store", "library"];
@@ -26,3 +27,4 @@ export const Header = () => {
     </header>
   );
 };
+
