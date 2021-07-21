@@ -3,7 +3,6 @@ import { Cards } from "src/components/Cards";
 import { About } from "src/components/About";
 import { Spotify } from "src/components/Spotify";
 import { Headline } from "src/components/Headline";
-import { StoreItems } from "src/components/StoreItems";
 import { LibraryItems } from "src/components/LibraryItems";
 import { PlaylistDetail } from "src/components/PlaylistDetail";
 import { Contact } from "src/components/Contact";
@@ -21,8 +20,6 @@ export const Main = (props) => {
           <Spotify />
         ) : props.page === "playlist" ? (
           <PlaylistDetail />
-        ) : props.page === "store" ? (
-          <StoreItems />
         ) : props.page === "library" ? (
           <LibraryItems />
         ) : props.page === "contact" ? (

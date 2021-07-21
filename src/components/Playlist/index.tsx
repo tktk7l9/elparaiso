@@ -1,4 +1,3 @@
-import classes from "src/components/Playlist/Playlist.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,14 +7,14 @@ export const Playlist = (props) => {
     <>
       <Link href={href}>
         <Image
-          className={classes.img}
           src={src}
           alt={title}
           width={300}
           height={300}
+          placeholder="blur"
         />
       </Link>
-      <p className={classes.p}>{title}</p>
+      <p className={"p-4"}>{title}</p>
     </>
   );
 };

@@ -1,9 +1,7 @@
-import classes from "src/components/About/About.module.css";
-
 export const About = () => {
   return (
     <>
-      <p className={classes.p}>
+      <p className={"p-2 m-2"}>
         EL PARAISO
         <br />
         2021年より発足したコミュニティブランド。
