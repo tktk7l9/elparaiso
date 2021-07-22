@@ -6,58 +6,80 @@ import projects from "public/images/top/projects.webp";
 import store from "public/images/top/store.webp";
 import library from "public/images/top/library.webp";
 
-export const Cards = () => {
+const CARDS = [
+  {
+    page: "about",
+    src: about,
+  },
+  {
+    page: "melodies",
+    src: melodies,
+  },
+  {
+    page: "projects",
+    src: projects,
+  },
+  {
+    page: "https://elparaiso.stores.jp/",
+    src: store,
+  },
+  {
+    page: "library",
+    src: library,
+  },
+];
+
+function ExternalLink(externalLink, imageSrc, imageSize) {
   return (
-    <div className={"text-center"}>
-      <Link href="/about">
+    <a
+      href={externalLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      key={externalLink}
+    >
+      <div>
         <Image
-          src={about}
-          alt="about"
+          src={imageSrc}
+          alt={externalLink}
           placeholder="blur"
-          width={300}
-          height={300}
+          width={imageSize}
+          height={imageSize}
         />
-      </Link>
-      <Link href="/melodies">
+      </div>
+    </a>
+  );
+}
+
+function InternalLink(internalLink, imageSrc, imageSize) {
+  const href = `/${internalLink}`;
+  return (
+    <Link href={href} key={internalLink} passHref>
+      <div>
         <Image
-          src={melodies}
-          alt="melodies"
+          src={imageSrc}
+          alt={internalLink}
           placeholder="blur"
-          width={300}
-          height={300}
+          width={imageSize}
+          height={imageSize}
         />
-      </Link>
-      <Link href="/projects">
-        <Image
-          src={projects}
-          alt="projects"
-          placeholder="blur"
-          width={300}
-          height={300}
-        />
-      </Link>
-      <a
-        href="https://elparaiso.stores.jp/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Image
-          src={store}
-          alt="store"
-          placeholder="blur"
-          width={300}
-          height={300}
-        />
-      </a>
-      <Link href="/library">
-        <Image
-          src={library}
-          alt="library"
-          placeholder="blur"
-          width={300}
-          height={300}
-        />
-      </Link>
+      </div>
+    </Link>
+  );
+}
+
+export const Cards = () => {
+  const size = 300;
+  return (
+    <div
+      className={
+        "text-center py-4 mb-20 md:grid grid-cols-3 gap-4 md:px-20 2xl:gap-20 2xl:px-96"
+      }
+    >
+      {CARDS.map(({ page, src }) => {
+        return page.startsWith("http")
+          ? ExternalLink(page, src, size)
+          : InternalLink(page, src, size);
+      })}
     </div>
   );
 };

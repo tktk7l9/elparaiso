@@ -1,5 +1,4 @@
 import Link from "next/link";
-import classes from "src/components/Footer/Footer.module.css";
 import React from "react";
 
 export const Footer = () => {
@@ -26,24 +25,20 @@ export const Footer = () => {
     },
   ];
   return (
-    <footer className={classes.footer}>
-      <div className={classes.items}>Culture & Policy</div>
-      {LINKS.map((link) => {
-        const isInnerLink = link.isInnerLink;
+    <footer
+      className={
+        "list-item text-xs tracking-wider leading-6 pt-5 py-5 pb-24 bg-gray-100"
+      }
+    >
+      <div className={"px-4 py-1"}>Culture & Policy</div>
+      {LINKS.map(({ href, title, isInnerLink }) => {
         return (
-          <div key={link.title} className={classes.items}>
+          <div key={title} className={"px-4 py-1 hover:text-gray-500"}>
             {isInnerLink ? (
-              <Link href={link.href} className={classes.links}>
-                {link.title}
-              </Link>
+              <Link href={href}>{title}</Link>
             ) : (
-              <a
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={classes.links}
-              >
-                {link.title}
+              <a href={href} target="_blank" rel="noopener noreferrer">
+                {title}
               </a>
             )}
           </div>

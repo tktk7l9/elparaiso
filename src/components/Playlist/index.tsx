@@ -5,16 +5,18 @@ export const Playlist = (props) => {
   const { href, src, title } = props;
   return (
     <>
-      <Link href={href}>
-        <Image
-          src={src}
-          alt={title}
-          width={300}
-          height={300}
-          placeholder="blur"
-        />
+      <Link href={href} passHref>
+        <div>
+          <Image
+            src={src}
+            alt={title}
+            width={300}
+            height={300}
+            placeholder="blur"
+          />
+        </div>
       </Link>
-      <p className={"p-4"}>{title}</p>
+      <p className={"p-2"}>{title}</p>
     </>
   );
 };

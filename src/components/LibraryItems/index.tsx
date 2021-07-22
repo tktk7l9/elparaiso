@@ -1,6 +1,4 @@
 import Image from "next/image";
-import { useState } from "react";
-import { Modal } from "src/components/Modal";
 import image0001 from "public/images/library/image0001.webp";
 import image0002 from "public/images/library/image0002.webp";
 import image0003 from "public/images/library/image0003.webp";
@@ -15,42 +13,37 @@ import image0011 from "public/images/library/image0011.webp";
 import image0012 from "public/images/library/image0012.webp";
 import image0013 from "public/images/library/image0013.webp";
 
+const ITEMS = [
+  image0001,
+  image0002,
+  image0003,
+  image0004,
+  image0005,
+  image0006,
+  image0007,
+  image0008,
+  image0009,
+  image0010,
+  image0011,
+  image0012,
+  image0013,
+];
+
 export const LibraryItems = () => {
-  const ITEMS = [
-    image0001,
-    image0002,
-    image0003,
-    image0004,
-    image0005,
-    image0006,
-    image0007,
-    image0008,
-    image0009,
-    image0010,
-    image0011,
-    image0012,
-    image0013,
-  ];
-
-  const [isShow, setIsShow] = useState(false);
-  const openModal = () => setIsShow(true);
-
   return (
     <>
-      <article>
+      <article className={"text-center mb-20"}>
         {ITEMS.map((item) => {
           return (
-            <section className={"p-4"} key={item.src}>
+            <section className={"px-2 py-1"} key={item.src}>
               <figure>
-                <button onClick={openModal}>
-                  <Image src={item} alt={item.src} placeholder="blur" />
-                  {/* <Modal
-                    isShow={isShow}
-                    setIsShow={setIsShow}
-                    src={item}
-                    title={item.title}
-                  /> */}
-                </button>
+                <Image
+                  src={item}
+                  alt={item.src}
+                  width={1200}
+                  height={800}
+                  placeholder="blur"
+                />
               </figure>
             </section>
           );

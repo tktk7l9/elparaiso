@@ -5,10 +5,12 @@ import logo from "public/images/logo.svg";
 
 export const Headline = () => {
   return (
-    <div>
-      <Link href="/">
-        <Image src={logo} alt="logo" width={400} height={200} />
+    <>
+      <Link href="/" passHref>
+        <div>
+          <Image src={logo} alt="logo" width={400} height={200} />
+        </div>
       </Link>
-    </div>
+    </>
   );
 };

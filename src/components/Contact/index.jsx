@@ -1,9 +1,7 @@
-import classes from "src/components/Contact/Contact.module.css";
-
 export const Contact = () => {
   return (
-    <div className={classes.container}>
-      <div className={classes.description}>
+    <div className={"text-xs tracking-wider leading-6 px-2 mb-20 text-left"}>
+      <div>
         <p>CONTACT</p>
         <p>For all order inquires which include but not limited to:</p>
         <p>・Seeding Program</p>
@@ -22,70 +20,75 @@ export const Contact = () => {
         data-first-entry="0"
         data-last-entry="5"
         data-is-first-page="true"
-        className={classes.form}
+        className={"border-0 m-0 py-4 px-0"}
       >
         <div>
-          <p className={classes.name}>Name *</p>
-          <p className={classes.ninput}>
+          <p>Name *</p>
+          <p className={"inline-block py-1"}>
             <input
               id="firstName"
               type="text"
               name="entry.1648867423"
-              className={classes.ntext}
+              className={"w-full h-10 p-1 border border-gray-400"}
               required
             />
-            <label className={classes.label} htmlFor="firstName">
+            <label className={"block py-1"} htmlFor="firstName">
               First Name
             </label>
           </p>
-          <p id={classes.pLastName} className={classes.ninput}>
+          <p className={"inline-block pl-4 border-gray-800"}>
             <input
               id="lastName"
               type="text"
               name="entry.2110706354"
-              className={classes.ntext}
+              className={"w-full h-10 p-4 border border-gray-400"}
               required
             />
-            <label className={classes.label} htmlFor="lastName">
+            <label className={"block py-1"} htmlFor="lastName">
               Last Name
             </label>
           </p>
         </div>
-        <p className={classes.input}>
-          <label className={classes.label} htmlFor="email">
+        <p>
+          <label className={"block py-2"} htmlFor="email">
             Mail Address *
           </label>
           <input
             id="email"
             type="email"
             name="entry.854962110"
-            className={classes.text}
+            className={"w-80 h-10 p-4 border border-gray-400"}
             required
           />
         </p>
-        <p className={classes.input}>
-          <label className={classes.label} htmlFor="subject">
+        <p>
+          <label className={"block py-2"} htmlFor="subject">
             Subject *
           </label>
           <input
             id="subject"
             type="text"
             name="entry.1485299470"
-            className={classes.text}
+            className={"w-80 h-10 p-4 border border-gray-400"}
             required
           />
         </p>
-        <p className={classes.input}>
-          <label className={classes.label} htmlFor="message">
+        <p>
+          <label className={"block py-2"} htmlFor="message">
             Message *
           </label>
           <textarea
             id="message"
-            className={classes.textarea}
+            className={"w-80 h-full p-4 border border-gray-400"}
             name="entry.421893950"
           ></textarea>
         </p>
-        <button type="submit" className={classes.btn}>
+        <button
+          type="submit"
+          className={
+            "inline-block my-4 px-8 py-4 text-white bg-gray-800 border-0 text-xs leading-4 tracking-normal text-center	cursor-pointer appearance-none"
+          }
+        >
           Submit
         </button>
       </form>
