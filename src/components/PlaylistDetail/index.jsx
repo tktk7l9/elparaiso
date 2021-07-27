@@ -14,7 +14,7 @@ const PLAYLISTS = [
 
 export const PlaylistDetail = () => {
   return (
-    <div className={"mb-20"}>
+    <div className={"mb-20 animate-fade-in"}>
       <Playlist
         href={PLAYLISTS[0].href}
         src={PLAYLISTS[0].src}

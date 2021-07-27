@@ -14,7 +14,7 @@ const PLAYLISTS = [
 export const Spotify = () => {
   return (
     <>
-      <ul className={"text-center mb-20"}>
+      <ul className={"text-center mb-20 animate-fade-in"}>
         {PLAYLISTS.map(({ title, href, src }) => {
           return (
             <li key={title}>

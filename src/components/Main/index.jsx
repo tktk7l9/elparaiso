@@ -24,7 +24,7 @@ export const Main = (props) => {
         ) : props.page === "contact" ? (
           <Contact />
         ) : (
-          <div className={"pt-10 pb-64 lg:pb-96 lg:text-2xl"}>
+          <div className={"pt-10 pb-64 lg:pb-96 lg:text-2xl animate-fade-in"}>
             {props.page} page is coming soon
           </div>
         )}

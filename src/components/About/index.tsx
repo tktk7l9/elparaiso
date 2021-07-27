@@ -3,7 +3,7 @@ export const About = () => {
     <div className={"container mx-auto lg:"}>
       <p
         className={
-          "px-2 pt-4 mb-20 mt-2 mx-2 text-left sm:pb-64 lg:px-44 lg:text-lg 2xl:px-96 2xl:text-xl"
+          "px-2 pt-4 mb-20 mt-2 mx-2 text-left sm:pb-64 lg:px-44 lg:text-lg 2xl:px-96 2xl:text-xl animate-fade-in"
         }
       >
         EL PARAISO

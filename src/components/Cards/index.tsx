@@ -72,7 +72,7 @@ export const Cards = () => {
   return (
     <div
       className={
-        "text-center py-4 mb-20 md:grid grid-cols-3 gap-4 md:px-20 2xl:gap-20 2xl:px-96"
+        "text-center py-4 mb-20 md:grid grid-cols-3 gap-4 md:px-20 2xl:gap-20 2xl:px-96 animate-fade-in"
       }
     >
       {CARDS.map(({ page, src }) => {

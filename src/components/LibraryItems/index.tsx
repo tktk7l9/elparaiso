@@ -32,7 +32,7 @@ const ITEMS = [
 export const LibraryItems = () => {
   return (
     <>
-      <article className={"text-center mb-20"}>
+      <article className={"text-center mb-20 animate-fade-in"}>
         {ITEMS.map((item) => {
           return (
             <section className={"px-2 py-1"} key={item.src}>

@@ -1,6 +1,10 @@
 export const Contact = () => {
   return (
-    <div className={"text-xs tracking-wider leading-6 px-2 mb-20 text-left"}>
+    <div
+      className={
+        "text-xs tracking-wider leading-6 px-4 mb-20 text-left animate-fade-in"
+      }
+    >
       <div>
         <p>CONTACT</p>
         <p>For all order inquires which include but not limited to:</p>
