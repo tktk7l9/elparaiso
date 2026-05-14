@@ -11,21 +11,34 @@
 - `/projects` — プロジェクト一覧
 - `/library` — ライブラリ
 - `/melodies` — 音楽
-- `/store` — ストア
+- `/melodies/playlist` — プレイリスト詳細
+- `/store` — ストア（外部リンク: elparaiso.stores.jp）
 - `/contact` — コンタクト
+- `/admin` — 管理（Supabase 認証）
 
 ## 技術スタック
 
-- [Next.js](https://nextjs.org/) 11 (Pages Router)
-- [React](https://react.dev/) 17
+- [Next.js](https://nextjs.org/) 16 (App Router)
+- [React](https://react.dev/) 19
 - [TypeScript](https://www.typescriptlang.org/)
-- [Tailwind CSS](https://tailwindcss.com/) 2
+- [Tailwind CSS](https://tailwindcss.com/) 3
 - [Supabase](https://supabase.com/)
 - [Vercel](https://vercel.com/)
 
 ## 起動
 
 ```bash
-yarn install
-yarn dev
+cp .env.example .env.local  # 環境変数を設定
+npm install
+npm run dev
 ```
+
+## 環境変数
+
+`.env.example` を参照。
+
+| 変数名 | 説明 |
+|--------|------|
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase プロジェクト URL |
+| `NEXT_PUBLIC_SUPABASE_KEY` | Supabase anon キー |
+| `NEXT_PUBLIC_GA_ID` | Google Analytics トラッキング ID（任意） |

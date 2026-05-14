@@ -5,8 +5,6 @@ const PLAYLISTS = [
     src: "/images/melodies/playlist0001.webp",
     title: "CURATED MELODIES #1",
     href: "/melodies/playlist",
-    iframe:
-      '<iframe src="https://open.spotify.com/embed/track/564oa00vY05d1uYnTEAAmE" width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>',
   },
 ];
 

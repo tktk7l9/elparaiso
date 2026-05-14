@@ -47,7 +47,7 @@ function ExternalLink(externalLink, imageSrc, imageSize) {
 function InternalLink(internalLink, imageSrc, imageSize) {
   const href = `/${internalLink}`;
   return (
-    <Link href={href} key={internalLink} passHref>
+    <Link href={href} key={internalLink}>
       <div>
         <Image
           src={imageSrc}

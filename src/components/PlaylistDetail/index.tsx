@@ -20,9 +20,9 @@ export const PlaylistDetail = () => {
         src="https://open.spotify.com/embed/playlist/1jnkrS9FUGTzZ6nIOuZ0xE"
         width="300"
         height="380"
-        frameBorder="0"
         allow="encrypted-media"
-        className="block m-auto py-2"
+        sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"
+        className="block m-auto py-2 border-0"
       />
     </div>
   );

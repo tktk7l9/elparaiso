@@ -1,24 +1,26 @@
-import { Auth } from "@supabase/auth-ui-react";
-import { ThemeSupa } from "@supabase/auth-ui-shared";
-import type { Session } from "@supabase/supabase-js";
-import { useEffect, useState } from "react";
-import { Headline } from "src/components/Headline";
-import { client } from "src/libs/supabase";
+'use client'
 
-const Admin = () => {
-  const [session, setSession] = useState<Session | null>(null);
+import { Auth } from '@supabase/auth-ui-react'
+import { ThemeSupa } from '@supabase/auth-ui-shared'
+import type { Session } from '@supabase/supabase-js'
+import { useEffect, useState } from 'react'
+import { Headline } from 'src/components/Headline'
+import { client } from 'src/libs/supabase'
+
+export default function AdminContent() {
+  const [session, setSession] = useState<Session | null>(null)
 
   useEffect(() => {
     client.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
+      setSession(session)
+    })
     const {
       data: { subscription },
     } = client.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-    return () => subscription.unsubscribe();
-  }, []);
+      setSession(session)
+    })
+    return () => subscription.unsubscribe()
+  }, [])
 
   if (session) {
     return (
@@ -30,7 +32,7 @@ const Admin = () => {
           Sign out
         </button>
       </div>
-    );
+    )
   }
 
   return (
@@ -41,16 +43,10 @@ const Admin = () => {
           <Auth
             supabaseClient={client}
             appearance={{ theme: ThemeSupa }}
-            providers={["github", "google"]}
+            providers={['github', 'google']}
           />
         </div>
       </div>
     </>
-  );
-};
-
-export default Admin;
-
-export function getServerSideProps() {
-  return { props: {} };
+  )
 }

@@ -5,7 +5,7 @@ export const Playlist = (props) => {
   const { href, src, title } = props;
   return (
     <>
-      <Link href={href} passHref>
+      <Link href={href}>
         <div>
           <Image
             src={src}

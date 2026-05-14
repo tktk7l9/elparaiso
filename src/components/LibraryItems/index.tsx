@@ -20,7 +20,7 @@ export const LibraryItems = () => {
   return (
     <>
       <article className={"text-center mb-20 animate-fade-in"}>
-        {ITEMS.map((item) => {
+        {ITEMS.map((item, index) => {
           return (
             <section className={"px-2 py-1"} key={item}>
               <figure>
@@ -29,6 +29,7 @@ export const LibraryItems = () => {
                   alt={item}
                   width={1200}
                   height={800}
+                  priority={index === 0}
                 />
               </figure>
             </section>
