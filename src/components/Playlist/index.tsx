@@ -12,7 +12,6 @@ export const Playlist = (props) => {
             alt={title}
             width={300}
             height={300}
-            placeholder="blur"
           />
         </div>
       </Link>

@@ -1,9 +1,8 @@
 import { Playlist } from "src/components/Playlist";
-import playlist0001 from "public/images/melodies/playlist0001.webp";
 
 const PLAYLISTS = [
   {
-    src: playlist0001,
+    src: "/images/melodies/playlist0001.webp",
     title: "CURATED MELODIES #1",
     href: "/melodies/playlist",
     iframe:

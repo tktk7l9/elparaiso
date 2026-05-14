@@ -1,31 +1,26 @@
 import Link from "next/link";
 import Image from "next/image";
-import about from "public/images/top/about.webp";
-import melodies from "public/images/top/melodies.webp";
-import projects from "public/images/top/projects.webp";
-import store from "public/images/top/store.webp";
-import library from "public/images/top/library.webp";
 
 const CARDS = [
   {
     page: "about",
-    src: about,
+    src: "/images/top/about.webp",
   },
   {
     page: "melodies",
-    src: melodies,
+    src: "/images/top/melodies.webp",
   },
   {
     page: "projects",
-    src: projects,
+    src: "/images/top/projects.webp",
   },
   {
     page: "https://elparaiso.stores.jp/",
-    src: store,
+    src: "/images/top/store.webp",
   },
   {
     page: "library",
-    src: library,
+    src: "/images/top/library.webp",
   },
 ];
 
@@ -41,7 +36,6 @@ function ExternalLink(externalLink, imageSrc, imageSize) {
         <Image
           src={imageSrc}
           alt={externalLink}
-          placeholder="blur"
           width={imageSize}
           height={imageSize}
         />
@@ -58,7 +52,6 @@ function InternalLink(internalLink, imageSrc, imageSize) {
         <Image
           src={imageSrc}
           alt={internalLink}
-          placeholder="blur"
           width={imageSize}
           height={imageSize}
         />
