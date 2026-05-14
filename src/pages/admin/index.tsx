@@ -1,51 +1,56 @@
-import { Auth, Button, IconLogOut } from "@supabase/ui";
-import type { ReactNode } from "react";
-import React from "react";
+import { Auth } from "@supabase/auth-ui-react";
+import { ThemeSupa } from "@supabase/auth-ui-shared";
+import type { Session } from "@supabase/supabase-js";
+import { useEffect, useState } from "react";
 import { Headline } from "src/components/Headline";
 import { client } from "src/libs/supabase";
 
-type Props = {
-  children: ReactNode;
-};
+const Admin = () => {
+  const [session, setSession] = useState<Session | null>(null);
 
-const Container = (props: Props) => {
-  const { user } = Auth.useUser();
+  useEffect(() => {
+    client.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+    const {
+      data: { subscription },
+    } = client.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+    return () => subscription.unsubscribe();
+  }, []);
 
-  if (user) {
+  if (session) {
     return (
-      <>
-        <div className="flex justify-end mx-2 my-4">
-          <Button
-            size="medium"
-            icon={<IconLogOut />}
-            onClick={() => client.auth.signOut()}
-          >
-            Sign out
-          </Button>
-        </div>
-      </>
+      <div className="flex justify-end mx-2 my-4">
+        <button
+          className="px-4 py-2 text-sm text-white bg-gray-800 rounded"
+          onClick={() => client.auth.signOut()}
+        >
+          Sign out
+        </button>
+      </div>
     );
   }
-  return <>{props.children}</>;
-};
 
-const Admin = () => {
   return (
-    <Auth.UserContextProvider supabaseClient={client}>
-      <Container>
-        <Headline />
-        <div className="flex justify-center pt-8">
-          <div className="w-full sm:w-96">
-            <Auth
-              supabaseClient={client}
-              providers={["github", "google"]}
-              socialColors={true}
-            />
-          </div>
+    <>
+      <Headline />
+      <div className="flex justify-center pt-8">
+        <div className="w-full sm:w-96">
+          <Auth
+            supabaseClient={client}
+            appearance={{ theme: ThemeSupa }}
+            providers={["github", "google"]}
+          />
         </div>
-      </Container>
-    </Auth.UserContextProvider>
+      </div>
+    </>
   );
 };
 
 export default Admin;
+
+export function getServerSideProps() {
+  return { props: {} };
+}
