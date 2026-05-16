@@ -35,7 +35,7 @@ export const Footer = () => {
         return (
           <div key={title} className={"px-4 py-1 hover:text-gray-500"}>
             {isInnerLink ? (
-              <Link href={href}>{title}</Link>
+              <Link href={href} prefetch={false}>{title}</Link>
             ) : (
               <a href={href} target="_blank" rel="noopener noreferrer">
                 {title}

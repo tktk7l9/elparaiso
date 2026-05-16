@@ -12,6 +12,9 @@ const securityHeaders = [
 ]
 
 module.exports = {
+  experimental: {
+    inlineCss: true,
+  },
   async headers() {
     return [
       {

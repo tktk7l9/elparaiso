@@ -18,7 +18,7 @@ export const Header = () => {
             {page}
           </a>
         ) : (
-          <Link key={page} href={pageLink} className={"inline-block py-4 px-2 hover:text-gray-600"}>
+          <Link key={page} href={pageLink} prefetch={false} className={"inline-block py-4 px-2 hover:text-gray-600"}>
             {page}
           </Link>
         );
