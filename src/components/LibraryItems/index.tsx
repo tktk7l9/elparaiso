@@ -18,27 +18,28 @@ const ITEMS = [
 
 export const LibraryItems = () => {
   return (
-    <>
-      <article className={"text-center mb-20 animate-fade-in"}>
-        {ITEMS.map((item, index) => {
-          const isFirst = index === 0;
-          return (
-            <section className={"px-2 py-1"} key={item}>
-              <figure>
-                <Image
-                  src={item}
-                  alt={item}
-                  width={1200}
-                  height={800}
-                  sizes="(min-width: 1024px) 1024px, 100vw"
-                  priority={isFirst}
-                  loading={isFirst ? "eager" : "lazy"}
-                />
-              </figure>
-            </section>
-          );
-        })}
-      </article>
-    </>
+    <article
+      className={
+        "px-2 mb-20 animate-fade-in columns-1 sm:columns-2 lg:columns-3 gap-2"
+      }
+    >
+      {ITEMS.map((item, index) => {
+        const isFirst = index === 0;
+        return (
+          <figure key={item} className="mb-2 break-inside-avoid">
+            <Image
+              src={item}
+              alt={item}
+              width={1024}
+              height={682}
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              priority={isFirst}
+              loading={isFirst ? "eager" : "lazy"}
+              className="w-full h-auto"
+            />
+          </figure>
+        );
+      })}
+    </article>
   );
 };
