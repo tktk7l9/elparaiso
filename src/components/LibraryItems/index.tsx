@@ -21,6 +21,7 @@ export const LibraryItems = () => {
     <>
       <article className={"text-center mb-20 animate-fade-in"}>
         {ITEMS.map((item, index) => {
+          const isFirst = index === 0;
           return (
             <section className={"px-2 py-1"} key={item}>
               <figure>
@@ -29,7 +30,9 @@ export const LibraryItems = () => {
                   alt={item}
                   width={1200}
                   height={800}
-                  priority={index === 0}
+                  sizes="(min-width: 1024px) 1024px, 100vw"
+                  priority={isFirst}
+                  loading={isFirst ? "eager" : "lazy"}
                 />
               </figure>
             </section>

@@ -6,6 +6,7 @@ import { GA_TRACKING_ID } from 'src/libs/gtag'
 import { GoogleAnalytics } from './GoogleAnalytics'
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://elparaiso.vercel.app'),
   title: {
     template: '%s - EL PARAISO',
     default: 'EL PARAISO',
@@ -41,7 +42,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', '${GA_TRACKING_ID}', { page_path: window.location.pathname });
+              gtag('config', '${GA_TRACKING_ID}', { send_page_view: false });
             `}</Script>
           </>
         )}

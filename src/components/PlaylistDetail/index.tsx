@@ -20,9 +20,11 @@ export const PlaylistDetail = () => {
         src="https://open.spotify.com/embed/playlist/1jnkrS9FUGTzZ6nIOuZ0xE"
         width="300"
         height="380"
+        loading="lazy"
         allow="encrypted-media"
         sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"
         className="block m-auto py-2 border-0"
+        title="Spotify CURATED MELODIES #1"
       />
     </div>
   );

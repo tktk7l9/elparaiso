@@ -1,72 +1,36 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const CARDS = [
-  {
-    page: "about",
-    src: "/images/top/about.webp",
-  },
-  {
-    page: "melodies",
-    src: "/images/top/melodies.webp",
-  },
-  {
-    page: "projects",
-    src: "/images/top/projects.webp",
-  },
-  {
-    page: "https://elparaiso.stores.jp/",
-    src: "/images/top/store.webp",
-  },
-  {
-    page: "library",
-    src: "/images/top/library.webp",
-  },
+  { page: "about", src: "/images/top/about.webp" },
+  { page: "melodies", src: "/images/top/melodies.webp" },
+  { page: "projects", src: "/images/top/projects.webp" },
+  { page: "https://elparaiso.stores.jp/", src: "/images/top/store.webp" },
+  { page: "library", src: "/images/top/library.webp" },
 ];
 
-function ExternalLink(externalLink, imageSrc, imageSize, priority) {
-  return (
-    <a
-      href={externalLink}
-      target="_blank"
-      rel="noopener noreferrer"
-      key={externalLink}
-    >
-      <div>
-        <img
-          src={imageSrc}
-          alt={externalLink}
-          width={imageSize}
-          height={imageSize}
-          decoding="async"
-          loading={priority ? "eager" : "lazy"}
-          fetchPriority={priority ? "high" : "auto"}
-        />
-      </div>
-    </a>
-  );
-}
+const SIZE = 300;
+const SIZES = "(min-width: 768px) 33vw, 100vw";
 
-function InternalLink(internalLink, imageSrc, imageSize, priority) {
-  const href = `/${internalLink}`;
-  return (
-    <Link href={href} key={internalLink} prefetch={false}>
-      <div>
-        <img
-          src={imageSrc}
-          alt={internalLink}
-          width={imageSize}
-          height={imageSize}
-          decoding="async"
-          loading={priority ? "eager" : "lazy"}
-          fetchPriority={priority ? "high" : "auto"}
-        />
-      </div>
-    </Link>
-  );
-}
+type CardImageProps = {
+  src: string;
+  alt: string;
+  priority: boolean;
+};
+
+const CardImage = ({ src, alt, priority }: CardImageProps) => (
+  <Image
+    src={src}
+    alt={alt}
+    width={SIZE}
+    height={SIZE}
+    sizes={SIZES}
+    priority={priority}
+    loading={priority ? "eager" : "lazy"}
+  />
+);
 
 export const Cards = () => {
-  const size = 300;
   return (
     <div
       className={
@@ -74,10 +38,29 @@ export const Cards = () => {
       }
     >
       {CARDS.map(({ page, src }, idx) => {
-        const priority = idx < 3;
-        return page.startsWith("http")
-          ? ExternalLink(page, src, size, priority)
-          : InternalLink(page, src, size, priority);
+        const isExternal = page.startsWith("http");
+        const priority = idx === 0;
+        if (isExternal) {
+          return (
+            <a
+              key={page}
+              href={page}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div>
+                <CardImage src={src} alt={page} priority={priority} />
+              </div>
+            </a>
+          );
+        }
+        return (
+          <Link key={page} href={`/${page}`}>
+            <div>
+              <CardImage src={src} alt={page} priority={priority} />
+            </div>
+          </Link>
+        );
       })}
     </div>
   );
