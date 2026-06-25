@@ -1,9 +1,7 @@
 import type { ReactNode } from 'react'
 import type { Metadata } from 'next'
-import Script from 'next/script'
+import { Analytics } from '@vercel/analytics/next'
 import '../styles/globals.css'
-import { GA_TRACKING_ID } from 'src/libs/gtag'
-import { GoogleAnalytics } from './GoogleAnalytics'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://elparaiso.vercel.app'),
@@ -32,22 +30,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ja">
       <body>
-        {GA_TRACKING_ID && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="ga-init" strategy="afterInteractive">{`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${GA_TRACKING_ID}', { send_page_view: false });
-            `}</Script>
-          </>
-        )}
-        <GoogleAnalytics />
         {children}
+        {process.env.VERCEL && <Analytics />}
       </body>
     </html>
   )
