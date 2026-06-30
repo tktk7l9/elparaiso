@@ -17,14 +17,14 @@
     "react-dom": "19.2.7"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.3.1",
+    "@tailwindcss/postcss": "^4.3.2",
     "@types/gtag.js": "^0.0.6",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
-    "tailwindcss": "^4.3.1",
+    "tailwindcss": "^4.3.2",
     "typescript": "^5"
   },
   "overrides": {
