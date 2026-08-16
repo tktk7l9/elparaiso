@@ -34,3 +34,7 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# Cloudflare Workers のビルド成果物とローカル状態
+.open-next
+.wrangler
