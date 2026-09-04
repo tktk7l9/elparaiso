@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react'
 import type { Metadata } from 'next'
-import { Analytics } from '@vercel/analytics/next'
 import { siteUrl } from '../lib/site'
 import '../styles/globals.css'
 
@@ -32,7 +31,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="ja">
       <body>
         {children}
-        {process.env.VERCEL && <Analytics />}
+        {/* Cloudflare Web Analytics（トークンは公開前提の識別子。秘密ではない） */}
+        {/* eslint-disable-next-line @next/next/no-sync-scripts --
+            type="module" のスクリプトは仕様上 defer されるため、パーサーを止めない */}
+        <script
+          type="module"
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={'{"token": "cd156fbf0fd24da0a12e58fdb4e63828"}'}
+        />
       </body>
     </html>
   )
