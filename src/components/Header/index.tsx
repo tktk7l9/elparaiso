@@ -1,28 +1,45 @@
+"use client";
+
 import Link from "next/link";
-import React from "react";
+import { usePathname } from "next/navigation";
+import { ExternalMark } from "src/components/ExternalMark";
+import { NAV_ITEMS, isCurrentPage } from "src/lib/nav";
+
+const LINK_CLASS =
+  "inline-block py-3 px-1.5 sm:px-2 underline-offset-4 decoration-2 hover:text-gray-600";
 
 export const Header = () => {
-  const PAGES = ["about", "melodies", "projects", "store", "library"];
+  const pathname = usePathname();
   return (
-    <header className={"w-full h-10 flex justify-center"}>
-      {PAGES.map((page) => {
-        let pageLink = "/" + page;
-        return page === "store" ? (
-          <a
-            href="https://elparaiso.stores.jp/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={"inline-block py-4 px-2 hover:text-gray-600"}
-            key={page}
-          >
-            {page}
-          </a>
-        ) : (
-          <Link key={page} href={pageLink} className={"inline-block py-4 px-2 hover:text-gray-600"}>
-            {page}
-          </Link>
-        );
-      })}
+    <header className={"w-full"}>
+      <nav aria-label="メイン">
+        <ul className={"flex flex-wrap justify-center"}>
+          {NAV_ITEMS.map(({ label, href, external }) => {
+            if (external) {
+              return (
+                <li key={label}>
+                  <a href={href} target="_blank" rel="noopener noreferrer" className={LINK_CLASS}>
+                    {label}
+                    <ExternalMark />
+                  </a>
+                </li>
+              );
+            }
+            const current = isCurrentPage(pathname, href);
+            return (
+              <li key={label}>
+                <Link
+                  href={href}
+                  aria-current={current ? "page" : undefined}
+                  className={`${LINK_CLASS} ${current ? "underline font-semibold" : ""}`}
+                >
+                  {label}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
     </header>
   );
 };

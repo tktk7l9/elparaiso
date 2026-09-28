@@ -20,7 +20,7 @@ export const LibraryItems = () => {
   return (
     <article
       className={
-        "px-2 mb-20 animate-fade-in columns-1 sm:columns-2 lg:columns-3 gap-2"
+        "px-2 mb-20 motion-safe:animate-fade-in columns-1 sm:columns-2 lg:columns-3 gap-2"
       }
     >
       {ITEMS.map((item, index) => {
@@ -29,7 +29,7 @@ export const LibraryItems = () => {
           <figure key={item} className="mb-2 break-inside-avoid">
             <Image
               src={item}
-              alt={item}
+              alt={`EL PARAISO ライブラリ写真 ${index + 1}`}
               width={1024}
               height={682}
               sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"

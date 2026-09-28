@@ -4,6 +4,7 @@
 //   - 'unsafe-inline' in script/style is required by Next.js (RSC inline payload + Tailwind v4)
 //   - img-src allows the remote Spotify/Imageflux hosts by name
 //   - connect-src allows Supabase REST/Realtime
+//   - frame-src allows only the Spotify playlist embed on /melodies
 const csp = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.cloudflareinsights.com",
@@ -12,6 +13,7 @@ const csp = [
   "font-src 'self' data:",
   "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://cloudflareinsights.com",
   "worker-src 'self' blob:",
+  "frame-src https://open.spotify.com",
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",

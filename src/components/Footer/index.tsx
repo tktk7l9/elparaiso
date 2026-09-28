@@ -1,49 +1,41 @@
 import Link from "next/link";
-import React from "react";
+import { ExternalMark } from "src/components/ExternalMark";
+import { STORE_URL } from "src/lib/nav";
+
+const LINKS = [
+  { href: "https://www.instagram.com/elparaisojp/", title: "Instagram", external: true },
+  { href: STORE_URL, title: "Store", external: true },
+  {
+    href: "https://open.spotify.com/playlist/1jnkrS9FUGTzZ6nIOuZ0xE?si=70f4ef6442fb48f2",
+    title: "Spotify",
+    external: true,
+  },
+  { href: "/contact", title: "Contact", external: false },
+];
+
+// Links are blocks with vertical padding so each target is at least 44px tall.
+const LINK_CLASS = "block px-4 py-3 hover:text-gray-500";
 
 export const Footer = () => {
-  const LINKS = [
-    {
-      href: "https://www.instagram.com/elparaisojp/",
-      title: "Instagram",
-      isInnerLink: false,
-    },
-    {
-      href: "https://elparaiso.stores.jp/",
-      title: "Store",
-      isInnerLink: false,
-    },
-    {
-      href: "https://open.spotify.com/playlist/1jnkrS9FUGTzZ6nIOuZ0xE?si=70f4ef6442fb48f2",
-      title: "Spotify",
-      isInnerLink: false,
-    },
-    {
-      href: "/contact",
-      title: "Contact",
-      isInnerLink: true,
-    },
-  ];
   return (
-    <footer
-      className={
-        "list-item text-xs tracking-wider leading-6 pt-5 py-5 pb-24 bg-gray-100"
-      }
-    >
-      <div className={"px-4 py-1"}>Culture & Policy</div>
-      {LINKS.map(({ href, title, isInnerLink }) => {
-        return (
-          <div key={title} className={"px-4 py-1 hover:text-gray-500"}>
-            {isInnerLink ? (
-              <Link href={href}>{title}</Link>
-            ) : (
-              <a href={href} target="_blank" rel="noopener noreferrer">
+    <footer className={"text-sm tracking-wider leading-5 pt-4 pb-24 bg-gray-100"}>
+      <div className={"px-4 py-3"}>Culture & Policy</div>
+      <ul>
+        {LINKS.map(({ href, title, external }) => (
+          <li key={title}>
+            {external ? (
+              <a href={href} target="_blank" rel="noopener noreferrer" className={LINK_CLASS}>
                 {title}
+                <ExternalMark />
               </a>
+            ) : (
+              <Link href={href} className={LINK_CLASS}>
+                {title}
+              </Link>
             )}
-          </div>
-        );
-      })}
+          </li>
+        ))}
+      </ul>
     </footer>
   );
 };
