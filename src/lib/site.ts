@@ -1,11 +1,11 @@
 /**
- * サイトの正規 URL。
+ * The site's canonical URL.
  *
- * metadataBase / OGP がここを参照する。以前は layout.tsx に直書きされており、
- * ホスティング移行時に取りこぼす形になっていた。
+ * metadataBase / OGP read it from here. It used to be hard-coded in layout.tsx,
+ * which made it easy to miss when moving hosts.
  *
- * 2026-08-16 に Vercel (elparaiso.vercel.app) から Cloudflare Workers へ移行。
- * Vercel 側は Fair Use 超過でアカウントごと 402 になっており、旧 URL を
- * canonical に残すと死んだページを正規扱いさせてしまう。
+ * Moved from Vercel (elparaiso.vercel.app) to Cloudflare Workers on 2026-08-16.
+ * The Vercel account as a whole returns 402 after exceeding Fair Use, so leaving the
+ * old URL as canonical would mark a dead page as the canonical one.
  */
 export const siteUrl = 'https://elparaiso.saitotakuya0719.workers.dev'

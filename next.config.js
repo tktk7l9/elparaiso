@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 
 // CSP:
-//   - script/style に 'unsafe-inline' は Next.js (RSC inline payload + Tailwind v4) の要件
-//   - img-src で remote の Spotify/Imageflux をホスト指定で許可
-//   - connect-src で Supabase REST/Realtime を許可
+//   - 'unsafe-inline' in script/style is required by Next.js (RSC inline payload + Tailwind v4)
+//   - img-src allows the remote Spotify/Imageflux hosts by name
+//   - connect-src allows Supabase REST/Realtime
 const csp = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.cloudflareinsights.com",
@@ -20,15 +20,15 @@ const csp = [
 
 const securityHeaders = [
   { key: 'Content-Security-Policy', value: csp },
-  // CSP の frame-ancestors と冗長だが古いブラウザ向けに残す
+  // Redundant with CSP frame-ancestors, but kept for older browsers
   { key: 'X-Frame-Options', value: 'DENY' },
-  // MIME スニッフィング対策
+  // Prevent MIME sniffing
   { key: 'X-Content-Type-Options', value: 'nosniff' },
-  // リファラ情報の制限
+  // Limit referrer information
   { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-  // 不要なブラウザ機能を無効化
+  // Disable browser features we do not need
   { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
-  // HSTS (Vercel ではデフォルトで付くが明示)
+  // HSTS (Vercel adds it by default, but set it explicitly)
   { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
 ]
 
