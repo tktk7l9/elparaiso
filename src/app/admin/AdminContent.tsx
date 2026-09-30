@@ -13,18 +13,27 @@ import { client } from 'src/libs/supabase'
 // Map them onto the grays the rest of the site already uses (button
 // gray-800/700, labels gray-600, hover gray-500) so the login form reads the
 // same as the site's own buttons, passes WCAG AA contrast, and the focused
-// field is clearly marked by a dark border.
+// field is clearly marked by a dark border. The resting input border and the
+// success/error messages are overridden too: ThemeSupa's lightgray border is
+// 1.5:1 against white (needs 3:1) and its red error text is 2.76:1.
 const AUTH_COLORS = {
   brand: '#1f2937',
   brandAccent: '#374151',
   brandButtonText: '#ffffff',
   defaultButtonText: '#1f2937',
+  inputBorder: '#6b7280',
   inputBorderHover: '#4b5563',
   inputBorderFocus: '#1f2937',
   inputLabelText: '#4b5563',
   inputPlaceholder: '#6b7280',
   anchorTextColor: '#4b5563',
   anchorTextHoverColor: '#6b7280',
+  messageText: '#166534',
+  messageBackground: '#f0fdf4',
+  messageBorder: '#bbf7d0',
+  messageTextDanger: '#b91c1c',
+  messageBackgroundDanger: '#fef2f2',
+  messageBorderDanger: '#fecaca',
 } as const
 
 export default function AdminContent() {

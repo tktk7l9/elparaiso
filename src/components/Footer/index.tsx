@@ -14,7 +14,8 @@ const LINKS = [
 ];
 
 // Links are blocks with vertical padding so each target is at least 44px tall.
-const LINK_CLASS = "block px-4 py-3 hover:text-gray-500";
+// Hover uses gray-600: gray-500 on the gray-100 footer is only 4.39:1.
+const LINK_CLASS = "block px-4 py-3 hover:text-gray-600";
 
 export const Footer = () => {
   return (
