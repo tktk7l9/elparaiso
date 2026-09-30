@@ -10,5 +10,11 @@ const AdminContent = dynamic(() => import('./AdminContent'), {
 })
 
 export default function Admin() {
-  return <AdminContent />
+  // The main landmark lives here, outside the dynamic chunk, so the loading
+  // fallback and both auth states share it (one main per page, no nesting).
+  return (
+    <main className="text-center">
+      <AdminContent />
+    </main>
+  )
 }
