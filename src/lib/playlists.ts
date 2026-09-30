@@ -1,5 +1,5 @@
 // Curated playlists shown on /melodies.
-// Kept free of path aliases and React so node's test runner can import it.
+// Kept free of React so it can be tested without rendering.
 
 export type PlaylistData = {
   title: string

@@ -16,5 +16,8 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      - run: npm test
+      # next build does not lint in Next 16; run it here so it runs somewhere.
+      - run: npm run lint
+      # Coverage thresholds live in vitest.config.mts; this fails when they slip.
+      - run: npm run test:coverage
       - run: npm run build
