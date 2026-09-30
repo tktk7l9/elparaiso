@@ -15,7 +15,8 @@ const eslintConfig = defineConfig([
     // eslint-config-next parses plain JS with its bundled @babel/eslint-parser,
     // whose scope manager lacks addGlobals() and crashes under ESLint 10.
     // typescript-eslint's parser supports ESLint 10 and handles JS/JSX too.
-    files: ["**/*.{js,jsx,mjs,cjs}"],
+    // .mts/.cts (vitest.config.mts) are not covered by its TypeScript override either.
+    files: ["**/*.{js,jsx,mjs,cjs,mts,cts}"],
     languageOptions: { parser: tseslint.parser },
   },
   globalIgnores([

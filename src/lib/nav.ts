@@ -1,5 +1,5 @@
 // Site navigation, shared by the header and the top-page cards.
-// Kept free of path aliases and React so node's test runner can import it.
+// Kept free of React so it can be tested without rendering.
 
 export const STORE_URL = 'https://elparaiso.stores.jp/'
 
