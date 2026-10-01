@@ -15,7 +15,7 @@ export default function Error({
   }, [error])
 
   return (
-    <div className="flex flex-col items-center justify-center py-24 text-center">
+    <main className="flex flex-col items-center justify-center py-24 text-center">
       <h1 className="text-2xl font-bold mb-4">エラーが発生しました</h1>
       <div className="flex flex-wrap items-center justify-center gap-6">
         <button
@@ -28,6 +28,6 @@ export default function Error({
           ホームへ戻る
         </Link>
       </div>
-    </div>
+    </main>
   )
 }

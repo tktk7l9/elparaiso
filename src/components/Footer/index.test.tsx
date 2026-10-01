@@ -30,4 +30,12 @@ describe("Footer", () => {
     expect(contact).toHaveAttribute("href", "/contact");
     expect(contact).not.toHaveAttribute("target");
   });
+
+  it("darkens links on hover to gray-600, since gray-500 on the gray-100 footer is under 4.5:1", () => {
+    render(<Footer />);
+    for (const link of screen.getAllByRole("link")) {
+      expect(link).toHaveClass("hover:text-gray-600");
+      expect(link).not.toHaveClass("hover:text-gray-500");
+    }
+  });
 });

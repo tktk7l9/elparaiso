@@ -53,6 +53,7 @@ describe("content pages", () => {
 describe("not-found and loading", () => {
   it("404 explains the miss and offers a way home", () => {
     render(<NotFound />);
+    expect(screen.getByRole("main")).toBeVisible();
     expect(screen.getByRole("heading", { level: 1, name: "404" })).toBeVisible();
     expect(screen.getByText("ページが見つかりませんでした")).toBeVisible();
     expect(screen.getByRole("link", { name: "ホームへ戻る" })).toHaveAttribute("href", "/");

@@ -13,6 +13,7 @@ describe("error boundary page", () => {
     render(<ErrorPage error={error} reset={reset} />);
 
     expect(consoleError).toHaveBeenCalledWith(error);
+    expect(screen.getByRole("main")).toBeVisible();
     expect(screen.getByRole("heading", { level: 1, name: "エラーが発生しました" })).toBeVisible();
     expect(screen.getByRole("link", { name: "ホームへ戻る" })).toHaveAttribute("href", "/");
 
