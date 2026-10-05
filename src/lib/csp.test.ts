@@ -1,4 +1,4 @@
-import { test } from 'vitest'
+import { test, vi } from 'vitest'
 import assert from 'node:assert/strict'
 import { createRequire } from 'node:module'
 import { PLAYLISTS } from './playlists.ts'
@@ -33,4 +33,24 @@ test('CSP frame-src stays narrow (no wildcard, no self-framing of other sites)',
   const csp = await cspDirectives()
   assert.deepEqual(csp.get('frame-src'), ['https://open.spotify.com'])
   assert.deepEqual(csp.get('frame-ancestors'), ["'none'"])
+})
+
+test('production CSP does not allow eval; dev keeps it for React debugging', async () => {
+  const configPath = require.resolve('../../next.config.js')
+  const loadScriptSrc = async (env: string) => {
+    vi.stubEnv('NODE_ENV', env)
+    delete require.cache[configPath]
+    const rules = await require(configPath).headers()
+    const value: string = rules
+      .flatMap((rule: { headers: { key: string; value: string }[] }) => rule.headers)
+      .find((h: { key: string }) => h.key === 'Content-Security-Policy').value
+    return value.split(';').map((d) => d.trim()).find((d) => d.startsWith('script-src')) ?? ''
+  }
+  try {
+    assert.ok(!(await loadScriptSrc('production')).includes("'unsafe-eval'"))
+    assert.ok((await loadScriptSrc('development')).includes("'unsafe-eval'"))
+  } finally {
+    vi.unstubAllEnvs()
+    delete require.cache[configPath]
+  }
 })

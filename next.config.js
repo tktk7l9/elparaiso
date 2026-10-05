@@ -5,9 +5,11 @@
 //   - img-src allows the remote Spotify/Imageflux hosts by name
 //   - connect-src allows Supabase REST/Realtime
 //   - frame-src allows only the Spotify playlist embed on /melodies
+//   - 'unsafe-eval' is only for next dev (React debugging); production bundles never eval
+const isDev = process.env.NODE_ENV !== 'production'
 const csp = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.cloudflareinsights.com",
+  `script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com${isDev ? " 'unsafe-eval'" : ''}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https://spotify.com https://p1-e6eeae93.imageflux.jp https://i.scdn.co",
   "font-src 'self' data:",
