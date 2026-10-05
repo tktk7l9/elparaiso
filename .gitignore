@@ -25,12 +25,14 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
+# keyway pull -e <env> writes .env.development / .env.production; ignore every
+# .env* so none of them can reach this public repository. Only the example is tracked.
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-.env.production
+.env.*
+!.env.example
+# wrangler local secrets
+.dev.vars
+.dev.vars.*
 
 # vercel
 .vercel
