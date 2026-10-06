@@ -35,22 +35,59 @@ test('CSP frame-src stays narrow (no wildcard, no self-framing of other sites)',
   assert.deepEqual(csp.get('frame-ancestors'), ["'none'"])
 })
 
+const configPath = require.resolve('../../next.config.js')
+
+/** Reload next.config.js under `env` and return one CSP directive's sources. */
+async function directiveWithEnv(env: Record<string, string>, directive: string): Promise<string[]> {
+  for (const [k, v] of Object.entries(env)) vi.stubEnv(k, v)
+  delete require.cache[configPath]
+  const rules = await require(configPath).headers()
+  const value: string = rules
+    .flatMap((rule: { headers: { key: string; value: string }[] }) => rule.headers)
+    .find((h: { key: string }) => h.key === 'Content-Security-Policy').value
+  const found = value
+    .split(';')
+    .map((d) => d.trim())
+    .find((d) => d.startsWith(directive + ' '))
+  return found ? found.split(/\s+/).slice(1) : []
+}
+
+function restoreConfig() {
+  vi.unstubAllEnvs()
+  delete require.cache[configPath]
+}
+
 test('production CSP does not allow eval; dev keeps it for React debugging', async () => {
-  const configPath = require.resolve('../../next.config.js')
-  const loadScriptSrc = async (env: string) => {
-    vi.stubEnv('NODE_ENV', env)
-    delete require.cache[configPath]
-    const rules = await require(configPath).headers()
-    const value: string = rules
-      .flatMap((rule: { headers: { key: string; value: string }[] }) => rule.headers)
-      .find((h: { key: string }) => h.key === 'Content-Security-Policy').value
-    return value.split(';').map((d) => d.trim()).find((d) => d.startsWith('script-src')) ?? ''
-  }
   try {
-    assert.ok(!(await loadScriptSrc('production')).includes("'unsafe-eval'"))
-    assert.ok((await loadScriptSrc('development')).includes("'unsafe-eval'"))
+    assert.ok(!(await directiveWithEnv({ NODE_ENV: 'production' }, 'script-src')).includes("'unsafe-eval'"))
+    assert.ok((await directiveWithEnv({ NODE_ENV: 'development' }, 'script-src')).includes("'unsafe-eval'"))
   } finally {
-    vi.unstubAllEnvs()
-    delete require.cache[configPath]
+    restoreConfig()
+  }
+})
+
+test('connect-src allows only this Supabase project when its URL is known at build time', async () => {
+  try {
+    const sources = await directiveWithEnv(
+      { NEXT_PUBLIC_SUPABASE_URL: 'https://abcdefghijklmnop.supabase.co/' },
+      'connect-src',
+    )
+    assert.deepEqual(sources, ["'self'", 'https://abcdefghijklmnop.supabase.co', 'https://cloudflareinsights.com'])
+    assert.ok(!sources.some((s) => s.includes('*')), 'no wildcard host')
+    assert.ok(!sources.some((s) => s.startsWith('wss:')), 'Realtime is not used')
+  } finally {
+    restoreConfig()
+  }
+})
+
+test('connect-src falls back to the Supabase wildcard when the URL is missing or malformed', async () => {
+  try {
+    for (const url of ['', 'not a url', 'http://insecure.supabase.co']) {
+      const sources = await directiveWithEnv({ NEXT_PUBLIC_SUPABASE_URL: url }, 'connect-src')
+      assert.ok(sources.includes('https://*.supabase.co'), `wildcard kept for ${JSON.stringify(url)}`)
+      assert.ok(!sources.includes('http://insecure.supabase.co'), 'plain http origin never allowed')
+    }
+  } finally {
+    restoreConfig()
   }
 })

@@ -73,10 +73,16 @@ export default function AdminContent() {
       <PageTitle>admin</PageTitle>
       <div className="flex justify-center pt-8 text-left">
         <div className="w-full sm:w-96">
+          {/* Single-owner login: no "Sign up" / "Forgot your password?" / magic-link
+              links. Account creation stays in the Supabase dashboard, not on a public
+              page. (The dashboard's "Allow new users to sign up" must be off as well;
+              this only removes the invitation.) */}
           <Auth
             supabaseClient={client}
             appearance={{ theme: ThemeSupa, variables: { default: { colors: AUTH_COLORS } } }}
             providers={['github', 'google']}
+            view="sign_in"
+            showLinks={false}
           />
         </div>
       </div>

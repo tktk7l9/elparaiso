@@ -6,6 +6,8 @@ import type { Session } from "@supabase/supabase-js";
 type AuthListener = (event: string, session: Session | null) => void;
 type AuthProps = {
   providers: string[];
+  view?: string;
+  showLinks?: boolean;
   appearance?: { variables?: { default?: { colors?: Record<string, string> } } };
 };
 
@@ -89,6 +91,13 @@ describe("admin page", () => {
     expect(screen.getByRole("button", { name: "Sign in with google" })).toBeVisible();
     expect(screen.getByRole("link", { name: "EL PARAISO logo" })).toBeVisible();
     expect(screen.queryByRole("button", { name: "Sign out" })).toBeNull();
+  });
+
+  it("offers sign-in only: no sign-up, password-recovery or magic-link links on the public page", async () => {
+    render(<AdminContent />);
+    await screen.findByRole("form", { name: "サインイン" });
+    expect(mock.state.authProps?.view).toBe("sign_in");
+    expect(mock.state.authProps?.showLinks).toBe(false);
   });
 
   it("shows Sign out once a session exists and signs out on click", async () => {
