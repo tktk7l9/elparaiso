@@ -55,7 +55,7 @@ const securityHeaders = [
   { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
   // Disable browser features we do not need
   { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
-  // HSTS (Vercel adds it by default, but set it explicitly)
+  // HSTS (Workers does not add it by itself, so set it explicitly)
   { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
 ]
 

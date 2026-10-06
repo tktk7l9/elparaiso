@@ -1,6 +1,6 @@
 # EL PARAISO
 
-**[▶ 公開サイト](https://elparaiso.vercel.app)**
+**[▶ 公開サイト](https://elparaiso.saitotakuya0719.workers.dev)**
 
 2021年より発足したコミュニティブランドのWebサイト。EL PARAISOはスペイン語で「楽園」を意味し、染め・プリント・グラフィックデザインで日々の感情や情景をプロダクトに反映している。
 
@@ -21,9 +21,9 @@
 - [Next.js](https://nextjs.org/) 16 (App Router)
 - [React](https://react.dev/) 19
 - [TypeScript](https://www.typescriptlang.org/)
-- [Tailwind CSS](https://tailwindcss.com/) 3
+- [Tailwind CSS](https://tailwindcss.com/) 4
 - [Supabase](https://supabase.com/)
-- [Vercel](https://vercel.com/)
+- [Cloudflare Workers](https://workers.cloudflare.com/)（[@opennextjs/cloudflare](https://opennext.js.org/cloudflare) でビルド）
 
 ## 起動
 
