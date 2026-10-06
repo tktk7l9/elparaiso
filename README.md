@@ -14,7 +14,6 @@
 - `/melodies/playlist` — プレイリスト詳細
 - `/store` — ストア（外部リンク: elparaiso.stores.jp）
 - `/contact` — コンタクト
-- `/admin` — 管理（Supabase 認証）
 
 ## 技術スタック
 
@@ -22,23 +21,12 @@
 - [React](https://react.dev/) 19
 - [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind CSS](https://tailwindcss.com/) 4
-- [Supabase](https://supabase.com/)
 - [Cloudflare Workers](https://workers.cloudflare.com/)（[@opennextjs/cloudflare](https://opennext.js.org/cloudflare) でビルド）
 
 ## 起動
 
 ```bash
-cp .env.example .env.local  # 環境変数を設定
 npm install
 npm run dev
 ```
 
-## 環境変数
-
-`.env.example` を参照。
-
-| 変数名 | 説明 |
-|--------|------|
-| `NEXT_PUBLIC_SUPABASE_URL` | Supabase プロジェクト URL |
-| `NEXT_PUBLIC_SUPABASE_KEY` | Supabase anon キー |
-| `NEXT_PUBLIC_GA_ID` | Google Analytics トラッキング ID（任意） |

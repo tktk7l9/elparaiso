@@ -26,10 +26,9 @@ yarn-error.log*
 
 # local env files
 # keyway pull -e <env> writes .env.development / .env.production; ignore every
-# .env* so none of them can reach this public repository. Only the example is tracked.
+# .env* so none of them can reach this public repository.
 .env
 .env.*
-!.env.example
 # wrangler local secrets
 .dev.vars
 .dev.vars.*

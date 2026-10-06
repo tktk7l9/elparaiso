@@ -21,8 +21,6 @@ export default defineConfig({
         "**/*.d.ts",
         // Renders through satori/ImageResponse on the edge runtime; jsdom cannot execute it.
         "src/app/opengraph-image.tsx",
-        // Only creates the Supabase client from env; nothing to assert.
-        "src/libs/supabase.ts",
       ],
       reporter: ["text", "json-summary"],
       // Reached 100/98/100/95 on 2026-09-30 (stable over 3 runs); gate at 2 points below.

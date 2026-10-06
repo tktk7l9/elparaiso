@@ -35,7 +35,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ja">
       <body className="flex min-h-screen flex-col">
-        {/* Header and footer live here so 404, error and admin pages keep the way home. */}
+        {/* Header and footer live here so 404 and error pages keep the way home. */}
         <Header />
         <div className="flex-1">{children}</div>
         <Footer />

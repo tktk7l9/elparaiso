@@ -66,28 +66,10 @@ test('production CSP does not allow eval; dev keeps it for React debugging', asy
   }
 })
 
-test('connect-src allows only this Supabase project when its URL is known at build time', async () => {
-  try {
-    const sources = await directiveWithEnv(
-      { NEXT_PUBLIC_SUPABASE_URL: 'https://abcdefghijklmnop.supabase.co/' },
-      'connect-src',
-    )
-    assert.deepEqual(sources, ["'self'", 'https://abcdefghijklmnop.supabase.co', 'https://cloudflareinsights.com'])
-    assert.ok(!sources.some((s) => s.includes('*')), 'no wildcard host')
-    assert.ok(!sources.some((s) => s.startsWith('wss:')), 'Realtime is not used')
-  } finally {
-    restoreConfig()
-  }
-})
-
-test('connect-src falls back to the Supabase wildcard when the URL is missing or malformed', async () => {
-  try {
-    for (const url of ['', 'not a url', 'http://insecure.supabase.co']) {
-      const sources = await directiveWithEnv({ NEXT_PUBLIC_SUPABASE_URL: url }, 'connect-src')
-      assert.ok(sources.includes('https://*.supabase.co'), `wildcard kept for ${JSON.stringify(url)}`)
-      assert.ok(!sources.includes('http://insecure.supabase.co'), 'plain http origin never allowed')
-    }
-  } finally {
-    restoreConfig()
-  }
+test('connect-src allows only the site itself and the Cloudflare Web Analytics beacon', async () => {
+  const csp = await cspDirectives()
+  const sources = csp.get('connect-src') ?? []
+  assert.deepEqual(sources, ["'self'", 'https://cloudflareinsights.com'])
+  assert.ok(!sources.some((s) => s.includes('*')), 'no wildcard host')
+  assert.ok(!sources.some((s) => s.includes('supabase')), 'the Supabase login was removed with /admin')
 })
