@@ -5,6 +5,7 @@ import {
   applyScriptNonce,
   createNonce,
   CSP_HEADER,
+  isInlineJavaScript,
   type Rewriter,
   type ScriptElement,
   withScriptNonce,
@@ -64,6 +65,7 @@ function stubHTMLRewriter(fake: ReturnType<typeof fakeRewriter>) {
 function script(attrs: Record<string, string>) {
   return {
     attrs,
+    getAttribute: (name: string) => (name in attrs ? attrs[name] : null),
     hasAttribute: (name: string) => name in attrs,
     setAttribute(name: string, value: string) {
       attrs[name] = value
@@ -120,6 +122,41 @@ describe('withScriptNonce', () => {
   })
 })
 
+describe('isInlineJavaScript', () => {
+  test.each([
+    ['no type (Next RSC payload)', {}],
+    ['an empty type', { type: '' }],
+    ['text/javascript', { type: 'text/javascript' }],
+    ['a JavaScript MIME type in any case', { type: 'Application/JavaScript' }],
+    ['a legacy JavaScript MIME type', { type: 'text/x-ecmascript' }],
+    ['a type padded with whitespace', { type: ' text/javascript\n' }],
+    ['module', { type: 'module' }],
+    ['MODULE', { type: 'MODULE' }],
+    ['no type and an empty language', { language: '' }],
+    ['no type and language="JavaScript"', { language: 'JavaScript' }],
+  ])('stamps an inline script with %s', (_label, attrs: Record<string, string>) => {
+    assert.equal(isInlineJavaScript(script(attrs)), true)
+  })
+
+  test.each([
+    ['src (external, allowed by the source list on its own)', { src: '/_next/static/chunks/a.js' }],
+    ['src and type="module"', { src: '/a.js', type: 'module' }],
+    ['SVG href', { href: '/a.js' }],
+    ['SVG xlink:href', { 'xlink:href': '/a.js' }],
+    ['application/ld+json (data block)', { type: 'application/ld+json' }],
+    ['application/json (data block)', { type: 'application/json' }],
+    ['text/plain', { type: 'text/plain' }],
+    ['importmap', { type: 'importmap' }],
+    ['speculationrules', { type: 'speculationrules' }],
+    ['a MIME type with parameters (not an essence match, so it never runs)', { type: 'text/javascript; charset=utf-8' }],
+    ['a whitespace-only type (never runs)', { type: '  ' }],
+    ['an entity-encoded type (seen as written; blocked rather than blessed)', { type: 'text&#47;javascript' }],
+    ['a non-JavaScript language', { language: 'vbscript' }],
+  ])('leaves a script with %s unstamped', (_label, attrs: Record<string, string>) => {
+    assert.equal(isInlineJavaScript(script(attrs)), false)
+  })
+})
+
 describe('applyScriptNonce', () => {
   test('swaps the CSP for a nonce one and stamps every inline script, but no external one', () => {
     const fake = fakeRewriter()
@@ -140,10 +177,13 @@ describe('applyScriptNonce', () => {
     // Next writes several inline RSC payload scripts per page; each one needs the nonce.
     const payloads = [script({}), script({}), script({ id: '_R_' })]
     const external = script({ src: '/_next/static/chunks/a.js', async: '' })
-    for (const el of [...payloads, external]) fake.calls[0].handler(el)
+    const ldJson = script({ type: 'application/ld+json' })
+    for (const el of [...payloads, external, ldJson]) fake.calls[0].handler(el)
     for (const el of payloads) assert.equal(el.attrs.nonce, 'N')
     // External scripts are allowed by 'self'; a nonce on them would also bless injected ones.
     assert.equal(external.attrs.nonce, undefined)
+    // Data blocks never execute, so they get nothing either.
+    assert.equal(ldJson.attrs.nonce, undefined)
   })
 
   test('keeps exactly one CSP header and the other headers', () => {
