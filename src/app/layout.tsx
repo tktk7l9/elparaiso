@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import type { Metadata } from 'next'
 import { siteUrl } from '../lib/site'
+import { Analytics } from '../components/Analytics'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 import '../styles/globals.css'
@@ -28,9 +29,6 @@ export const metadata: Metadata = {
   },
 }
 
-// Cloudflare Web Analytics site token: a public identifier that ships in the HTML, not a secret.
-const CF_BEACON = '{"token": "cd156fbf0fd24da0a12e58fdb4e63828"}' // gitleaks:allow
-
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ja">
@@ -39,14 +37,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Header />
         <div className="flex-1">{children}</div>
         <Footer />
-        {/* Cloudflare Web Analytics */}
-        {/* eslint-disable-next-line @next/next/no-sync-scripts --
-            type="module" scripts are deferred by spec, so this does not block the parser */}
-        <script
-          type="module"
-          src="https://static.cloudflareinsights.com/beacon.min.js"
-          data-cf-beacon={CF_BEACON}
-        />
+        {/* Cloudflare Web Analytics, appended after hydration rather than written into the HTML */}
+        <Analytics />
       </body>
     </html>
   )

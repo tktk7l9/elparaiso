@@ -22,6 +22,9 @@
 - [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind CSS](https://tailwindcss.com/) 4
 - [Cloudflare Workers](https://workers.cloudflare.com/)（[@opennextjs/cloudflare](https://opennext.js.org/cloudflare) でビルド）
+- CSP: next.config.js の静的ヘッダーを土台に、Worker（`worker.ts`）が HTML の応答ごとに `script-src` の
+  `'unsafe-inline'` を毎リクエストの nonce に差し替える（`src/lib/csp-nonce.ts`）。
+  Cloudflare Web Analytics のビーコンは HTML に書かず、ハイドレーション後に追加する
 
 ## 起動
 
