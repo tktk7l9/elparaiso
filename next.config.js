@@ -36,6 +36,10 @@ const securityHeaders = [
   { key: 'X-Content-Type-Options', value: 'nosniff' },
   // Limit referrer information
   { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+  // Own browsing-context group: a page opened from here (or one that opens us) gets no handle
+  // on this window. The site opens no popups it needs to talk to (external links already use
+  // noopener) and the Spotify iframe is unaffected. Same as the sibling sites; Observatory +10.
+  { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
   // Disable browser features we do not need
   { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
   // HSTS (Workers does not add it by itself, so set it explicitly)
