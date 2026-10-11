@@ -48,6 +48,16 @@ Deploys happen only through Workers Builds when `main` changes.
   `</script><script>alert(1)</script>` cannot break out (JSON-LD: no `</script` or `<!--` in the
   output; Markdown: raw `<script>` and `on*` handlers dropped, `allowDangerousHtml` off).
 
+## Serving prerendered pages
+
+- `open-next.config.ts` sets `staticAssetsIncrementalCache` + `enableCacheInterception`
+  (`src/lib/open-next-config.test.ts`). Without an incremental cache the Worker cannot read the
+  build output and re-renders every page on every request (`x-nextjs-cache: MISS`), including
+  each next/link prefetch. Healthy responses carry `x-opennext-cache: HIT`; the HTML still goes
+  through `worker.ts`, so the nonce stays per request.
+- Keep every route static (○ in the `next build` route table): a route that turns dynamic quietly
+  goes back to rendering per request.
+
 ## Cloudflare Web Analytics
 
 - The beacon is appended after hydration by `src/components/Analytics`; never write it into the
