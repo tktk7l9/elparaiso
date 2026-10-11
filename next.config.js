@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 
 // CSP:
-//   - 'unsafe-inline' in script/style is required by Next.js (RSC inline payload + Tailwind v4)
+//   - 'unsafe-inline' in script-src is the baseline for next dev / next start, because Next writes
+//     its RSC payload as inline <script>. In production every HTML response goes through the
+//     Worker entry (worker.ts), which replaces it with a per-request nonce and stamps that nonce
+//     on each inline <script> (src/lib/csp-nonce.ts). Never add 'strict-dynamic': it would make
+//     'self' (the /_next/static chunks) and the beacon host be ignored, and those carry no nonce.
+//   - 'unsafe-inline' in style-src stays: inlined CSS (experimental.inlineCss) + Tailwind v4
 //   - img-src allows the remote Spotify/Imageflux hosts by name
 //   - connect-src allows only the site itself and the Cloudflare Web Analytics beacon;
 //     the site has no backend API, so no other origin may receive data from a script

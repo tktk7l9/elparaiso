@@ -66,6 +66,32 @@ test('production CSP does not allow eval; dev keeps it for React debugging', asy
   }
 })
 
+test("production script-src is the baseline the Worker tightens to a nonce (worker.ts)", async () => {
+  try {
+    // src/lib/csp-nonce.ts replaces exactly this 'unsafe-inline' on every HTML response.
+    assert.deepEqual(await directiveWithEnv({ NODE_ENV: 'production' }, 'script-src'), [
+      "'self'",
+      "'unsafe-inline'",
+      'https://static.cloudflareinsights.com',
+    ])
+  } finally {
+    restoreConfig()
+  }
+})
+
+test("CSP never contains 'strict-dynamic' in production or dev", async () => {
+  // The Worker stamps its nonce on inline scripts only. With 'strict-dynamic' the browser would
+  // ignore 'self' and the beacon host, so every /_next/static chunk and the beacon would stop,
+  // and next dev / next start, which have no nonce at all, would run no script.
+  try {
+    for (const NODE_ENV of ['production', 'development']) {
+      assert.ok(!(await directiveWithEnv({ NODE_ENV }, 'script-src')).includes("'strict-dynamic'"), NODE_ENV)
+    }
+  } finally {
+    restoreConfig()
+  }
+})
+
 test('connect-src allows only the site itself and the Cloudflare Web Analytics beacon', async () => {
   const csp = await cspDirectives()
   const sources = csp.get('connect-src') ?? []
