@@ -99,3 +99,15 @@ test('connect-src allows only the site itself and the Cloudflare Web Analytics b
   assert.ok(!sources.some((s) => s.includes('*')), 'no wildcard host')
   assert.ok(!sources.some((s) => s.includes('supabase')), 'the Supabase login was removed with /admin')
 })
+
+test('every response isolates its browsing context with COOP same-origin', async () => {
+  // Observatory cross-origin-opener-policy (+10); the sibling sites send the same value.
+  const rules = await nextConfig.headers()
+  const coop = rules
+    .flatMap((rule: { headers: { key: string; value: string }[] }) => rule.headers)
+    .filter((h: { key: string }) => h.key.toLowerCase() === 'cross-origin-opener-policy')
+  assert.deepEqual(
+    coop.map((h: { value: string }) => h.value),
+    ['same-origin'],
+  )
+})
