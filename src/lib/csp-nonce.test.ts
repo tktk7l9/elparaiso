@@ -2,7 +2,9 @@ import { afterEach, describe, test, vi } from 'vitest'
 import assert from 'node:assert/strict'
 import { createRequire } from 'node:module'
 import {
+  applyBrowserCacheControl,
   applyScriptNonce,
+  browserCacheControl,
   createNonce,
   CSP_HEADER,
   isInlineJavaScript,
@@ -33,6 +35,11 @@ async function productionCsp(): Promise<string> {
 const STATIC_CSP = await productionCsp()
 
 const BASE64_128_BITS = /^[A-Za-z0-9+/]{22}==$/
+
+/** What Next / OpenNext send with prerendered pages and their RSC payloads (meant for a CDN). */
+const NEXT_CACHE_CONTROL = 's-maxage=31536000, stale-while-revalidate=2592000'
+/** What browsers must get instead (Vercel's edge sends the same). */
+const BROWSER_CACHE_CONTROL = 'public, max-age=0, must-revalidate'
 
 /** Records the handler so tests can feed it fake <script> elements. */
 function fakeRewriter() {
@@ -236,6 +243,71 @@ describe('applyScriptNonce', () => {
   })
 })
 
+describe('browserCacheControl', () => {
+  test.each([
+    ['s-maxage with stale-while-revalidate (Next prerendered pages and RSC payloads)', NEXT_CACHE_CONTROL],
+    ['s-maxage alone', 's-maxage=31536000'],
+    ['s-maxage after other directives (OpenNext HTML pages)', 'public, max-age=0, s-maxage=31536000, must-revalidate'],
+    ['s-maxage in any case and spacing', 'S-MaxAge = 60,stale-while-revalidate=30'],
+  ])('replaces %s with the browser value', (_label, value) => {
+    assert.equal(browserCacheControl(value), BROWSER_CACHE_CONTROL)
+  })
+
+  test.each([
+    ['private, no-cache (Next 404 and dynamic pages)', 'private, no-cache, no-store, max-age=0, must-revalidate'],
+    ['immutable (/_next/static)', 'public,max-age=31536000,immutable'],
+    ['max-age without s-maxage', 'public, max-age=3600, stale-while-revalidate=60'],
+    ['a directive whose name only ends in s-maxage', 'x-s-maxage=60'],
+  ])('keeps %s unchanged', (_label, value) => {
+    assert.equal(browserCacheControl(value), value)
+  })
+
+  test('keeps a missing header missing', () => {
+    assert.equal(browserCacheControl(null), null)
+  })
+})
+
+describe('applyBrowserCacheControl', () => {
+  test('copies the response with only Cache-Control changed, leaving the original alone', async () => {
+    const original = new Response('0:[]', {
+      status: 200,
+      statusText: 'OK',
+      headers: { 'content-type': 'text/x-component', 'cache-control': NEXT_CACHE_CONTROL, etag: '"e"', vary: 'RSC' },
+    })
+
+    const out = applyBrowserCacheControl(original)
+
+    assert.notEqual(out, original)
+    assert.equal(out.headers.get('cache-control'), BROWSER_CACHE_CONTROL)
+    assert.equal(out.status, 200)
+    assert.equal(out.statusText, 'OK')
+    assert.equal(out.headers.get('content-type'), 'text/x-component')
+    assert.equal(out.headers.get('etag'), '"e"')
+    assert.equal(out.headers.get('vary'), 'RSC')
+    assert.equal(await out.text(), '0:[]')
+    // Never mutated in place: on Workers the original's headers can be immutable.
+    assert.equal(original.headers.get('cache-control'), NEXT_CACHE_CONTROL)
+  })
+
+  test('keeps a body-less 304 body-less', () => {
+    const out = applyBrowserCacheControl(
+      new Response(null, { status: 304, headers: { 'cache-control': NEXT_CACHE_CONTROL } }),
+    )
+    assert.equal(out.status, 304)
+    assert.equal(out.body, null)
+    assert.equal(out.headers.get('cache-control'), BROWSER_CACHE_CONTROL)
+  })
+
+  test.each([
+    ['no Cache-Control', () => new Response('x')],
+    ['a Cache-Control without s-maxage', () => new Response('x', { headers: { 'cache-control': 'public, max-age=31536000, immutable' } })],
+    ['the browser value already', () => new Response('x', { headers: { 'cache-control': BROWSER_CACHE_CONTROL } })],
+  ])('returns a response with %s as it is', (_label, make) => {
+    const response = make()
+    assert.equal(applyBrowserCacheControl(response), response)
+  })
+})
+
 describe('wrapWithScriptNonce', () => {
   test('hands the request to the inner worker and returns its HTML with a nonce CSP', async () => {
     const fake = fakeRewriter()
@@ -267,5 +339,49 @@ describe('wrapWithScriptNonce', () => {
     const png = new Response(new Uint8Array([137]), { headers: { 'content-type': 'image/png' } })
     const worker = wrapWithScriptNonce({ fetch: async () => png })
     assert.equal(await worker.fetch(new Request('https://elparaiso.example/opengraph-image'), {}, {}), png)
+  })
+
+  test("turns Next's CDN Cache-Control on HTML into the browser value and still stamps the nonce", async () => {
+    const fake = fakeRewriter()
+    stubHTMLRewriter(fake)
+    const worker = wrapWithScriptNonce({ fetch: async () => html({ 'cache-control': NEXT_CACHE_CONTROL }) })
+
+    const response = await worker.fetch(new Request('https://elparaiso.example/about'), {}, {})
+
+    assert.equal(response.headers.get('cache-control'), BROWSER_CACHE_CONTROL)
+    assert.match(nonceOf(response) ?? '', BASE64_128_BITS)
+    const inline = script({})
+    fake.calls[0].handler(inline)
+    assert.equal(inline.attrs.nonce, nonceOf(response))
+    assert.equal(fake.transformed.length, 1)
+  })
+
+  test("turns Next's CDN Cache-Control on an RSC payload into the browser value and leaves its CSP alone", async () => {
+    const fake = fakeRewriter()
+    stubHTMLRewriter(fake)
+    const rsc = new Response('0:[]', {
+      headers: { 'content-type': 'text/x-component', 'cache-control': NEXT_CACHE_CONTROL, [CSP_HEADER]: STATIC_CSP },
+    })
+    const worker = wrapWithScriptNonce({ fetch: async () => rsc })
+
+    const response = await worker.fetch(
+      new Request('https://elparaiso.example/about?_rsc=abc12', { headers: { RSC: '1', 'Next-Router-Prefetch': '1' } }),
+      {},
+      {},
+    )
+
+    assert.equal(response.headers.get('cache-control'), BROWSER_CACHE_CONTROL)
+    assert.equal(response.headers.get('content-type'), 'text/x-component')
+    assert.equal(response.headers.get(CSP_HEADER), STATIC_CSP)
+    assert.equal(fake.calls.length, 0)
+    assert.equal(await response.text(), '0:[]')
+  })
+
+  test('adds no Cache-Control to a response that has none', async () => {
+    stubHTMLRewriter(fakeRewriter())
+    const worker = wrapWithScriptNonce({ fetch: async () => html() })
+    const response = await worker.fetch(new Request('https://elparaiso.example/'), {}, {})
+    assert.equal(response.headers.get('cache-control'), null)
+    assert.match(nonceOf(response) ?? '', BASE64_128_BITS)
   })
 })

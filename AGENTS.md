@@ -57,6 +57,11 @@ Deploys happen only through Workers Builds when `main` changes.
   through `worker.ts`, so the nonce stays per request.
 - Keep every route static (○ in the `next build` route table): a route that turns dynamic quietly
   goes back to rendering per request.
+- Next marks prerendered pages and their RSC payloads `s-maxage=31536000,
+  stale-while-revalidate=2592000` (meant for a CDN). `worker.ts` turns any `s-maxage` value into
+  `public, max-age=0, must-revalidate` on every response (`browserCacheControl` in
+  `src/lib/csp-nonce.ts`); left alone, browsers reuse stale RSC payloads after a deploy and request
+  chunks that no longer exist (404). `/_next/static/*` comes from Workers Assets and stays immutable.
 
 ## Cloudflare Web Analytics
 
