@@ -8,9 +8,10 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "elparaiso",
-  // worker.ts wraps .open-next/worker.js to give HTML responses a per-request script nonce
-  // (src/lib/csp-nonce.ts). Pointing this back at .open-next/worker.js silently restores
-  // script-src 'unsafe-inline' (src/lib/worker-entry.test.ts blocks it).
+  // worker.ts wraps .open-next/worker.js to give HTML responses a per-request script nonce and
+  // every response a browser-safe Cache-Control (src/lib/csp-nonce.ts). Pointing this back at
+  // .open-next/worker.js silently restores script-src 'unsafe-inline' and Next's CDN-only
+  // s-maxage in browsers (src/lib/worker-entry.test.ts blocks it).
   "main": "worker.ts",
   "compatibility_date": "2026-08-16",
   // Required to run Next.js. The date must be 2024-09-23 or later.
