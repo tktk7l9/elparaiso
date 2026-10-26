@@ -11,6 +11,8 @@
 # next.js
 /.next/
 /out/
+# tsc --incremental (typecheck) rewrites this on every run
+*.tsbuildinfo
 
 # production
 /build
