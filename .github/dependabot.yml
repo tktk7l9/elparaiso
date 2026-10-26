@@ -23,7 +23,7 @@ updates:
         update-types:
           - "major"
     ignore:
-      # TypeScript 7: Next.js 16.2.x build refuses it ("does not provide
+      # TypeScript 7: Next.js 16.4.x build still refuses it ("does not provide
       # the compiler API required by Next.js"). Remove once Next.js
       # supports TypeScript 7 without the experimental flag.
       - dependency-name: "typescript"
