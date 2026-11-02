@@ -1,6 +1,5 @@
 // Contact form posting to Google Forms.
-// NOTE: the site CSP still has `form-action 'self'`, which blocks this POST; whether to
-// allow docs.google.com or send through our own route is an owner decision (SHIG audit A1/A2).
+// The action origin must stay listed in the CSP form-action (next.config.js, src/lib/csp.test.ts).
 
 const INPUT_CLASS = "w-full h-11 px-3 border border-gray-400";
 

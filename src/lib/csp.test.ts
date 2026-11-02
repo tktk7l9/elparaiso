@@ -1,5 +1,6 @@
 import { test, vi } from 'vitest'
 import assert from 'node:assert/strict'
+import { readFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import { PLAYLISTS } from './playlists.ts'
 
@@ -98,6 +99,26 @@ test('connect-src allows only the site itself and the Cloudflare Web Analytics b
   assert.deepEqual(sources, ["'self'", 'https://cloudflareinsights.com'])
   assert.ok(!sources.some((s) => s.includes('*')), 'no wildcard host')
   assert.ok(!sources.some((s) => s.includes('supabase')), 'the Supabase login was removed with /admin')
+})
+
+test('form-action allows the site itself and the Google Forms host, in production too', async () => {
+  try {
+    assert.deepEqual(await directiveWithEnv({ NODE_ENV: 'production' }, 'form-action'), [
+      "'self'",
+      'https://docs.google.com',
+    ])
+  } finally {
+    restoreConfig()
+  }
+})
+
+test('the /contact form posts to an origin the CSP form-action allows', async () => {
+  // Read the source rather than render it: this file runs without a DOM.
+  const source = readFileSync('src/components/Contact/index.tsx', 'utf8')
+  const action = /action="(https:[^"]+)"/.exec(source)?.[1]
+  assert.ok(action, 'the form has an absolute action URL')
+  const csp = await cspDirectives()
+  assert.ok(csp.get('form-action')?.includes(new URL(action).origin), `${action} allowed by form-action`)
 })
 
 test('img-src allows only the site itself, and no remote host is proxied through /_next/image', async () => {
