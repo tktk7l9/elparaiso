@@ -100,6 +100,16 @@ test('connect-src allows only the site itself and the Cloudflare Web Analytics b
   assert.ok(!sources.some((s) => s.includes('supabase')), 'the Supabase login was removed with /admin')
 })
 
+test('img-src allows only the site itself, and no remote host is proxied through /_next/image', async () => {
+  // Every next/image on the site points at /images/*. A host in images.remotePatterns would let
+  // anyone fetch that host's files through /_next/image?url=... on this Worker (the former
+  // spotify.com entry did exactly that), so the list stays empty, and img-src names no host.
+  const csp = await cspDirectives()
+  assert.deepEqual(csp.get('img-src'), ["'self'", 'data:', 'blob:'])
+  assert.equal(nextConfig.images?.remotePatterns, undefined)
+  assert.equal(nextConfig.images?.domains, undefined)
+})
+
 test('every response isolates its browsing context with COOP same-origin', async () => {
   // Observatory cross-origin-opener-policy (+10); the sibling sites send the same value.
   const rules = await nextConfig.headers()
