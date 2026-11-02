@@ -13,6 +13,7 @@
 //   - connect-src allows only the site itself and the Cloudflare Web Analytics beacon;
 //     the site has no backend API, so no other origin may receive data from a script
 //   - frame-src allows only the Spotify playlist embed on /melodies
+//   - form-action allows the Google Forms host that receives the /contact form
 //   - 'unsafe-eval' is only for next dev (React debugging); production bundles never eval
 const isDev = process.env.NODE_ENV !== 'production'
 const csp = [
@@ -26,7 +27,7 @@ const csp = [
   "frame-src https://open.spotify.com",
   "frame-ancestors 'none'",
   "base-uri 'self'",
-  "form-action 'self'",
+  "form-action 'self' https://docs.google.com",
   "object-src 'none'",
 ].join('; ')
 
